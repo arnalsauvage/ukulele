@@ -3,11 +3,13 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 // TODO : gérer dans la fenetre les retours de chariot tab et autres séparateurs
 // TODO : proposer l'enregistrement dans un fichier texte
 // TODO : proposer la lecture depuis un fichier texte
 // TODO : débuguer le transpose négatif qui "bloque"
+// TODO : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
+// TODO : familleAccord .lireDepuisFichTexte, comparer 
+
 
 public class Accord {
 	private NoteNom fondamentale; // Fondamentale de l'accord, ex: "C" pour do
@@ -122,8 +124,7 @@ public class Accord {
 		System.out.print("\t");
 	}
 
-	// On va chercher pour les 4 renversements de l'accord le/les nom(s) de
-	// l'accord
+	// On va chercher pour chaque renversement le/les nom(s) de l'accord
 	// Testée dans la méthode main de cette classe via afficheConsole
 	public String chercheTypeAccord(boolean tousLesAccords) {
 		String chaine = "";
