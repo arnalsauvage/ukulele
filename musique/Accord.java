@@ -3,6 +3,12 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+// TODO : gérer dans la fenetre les retours de chariot tab et autres séparateurs
+// TODO : proposer l'enregistrement dans un fichier texte
+// TODO : proposer la lecture depuis un fichier texte
+// TODO : débuguer le transpose négatif qui "bloque"
+
 public class Accord {
 	private NoteNom fondamentale; // Fondamentale de l'accord, ex: "C" pour do
 									// majeur 4è octave
