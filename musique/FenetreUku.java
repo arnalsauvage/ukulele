@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Fenetre extends JFrame
+public class FenetreUku extends JFrame
 implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private Panneau pan;
 
-	public Fenetre(){        
+	public FenetreUku(){        
 		this.setTitle("Accords ukulélé");
 		pan = new Panneau();
 		this.setSize(1400, 1250);
@@ -19,7 +19,7 @@ implements ActionListener{
 		this.setContentPane(pan);
 		this.setVisible(true);
 		addKeyListener(pan);
-		pan.paintComponent(this.getGraphics());
+		//pan.paintComponent(this.getGraphics());
 	}
 
 	@Override
@@ -29,8 +29,8 @@ implements ActionListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Fenetre fen ;
-		fen = new Fenetre();
+		FenetreUku fen ;
+		fen = new FenetreUku();
 		fen.isCursorSet();
 	}
 }

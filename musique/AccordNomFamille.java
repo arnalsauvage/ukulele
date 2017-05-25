@@ -109,7 +109,7 @@ public class AccordNomFamille {
 		monAccord.AjouteAlaListe();
 
 		monAccord = new AccordNomFamille();
-		monAccord.ajouteDegre(4);
+		monAccord.ajouteDegre(5);
 		monAccord.ajouteDegre(8);
 		monAccord.ajouteDegre(12);
 		monAccord.setNomAccord("7M");
@@ -128,8 +128,6 @@ public class AccordNomFamille {
 		monAccord = new AccordNomFamille("dim", accordDiminue);
 		monAccord.AjouteAlaListe();
 		monAccord = new AccordNomFamille("dim7", accordDiminue7);
-		monAccord.AjouteAlaListe();
-		monAccord = new AccordNomFamille("7", accordMajeur7maj);
 		monAccord.AjouteAlaListe();
 		monAccord = new AccordNomFamille("m7", accordMineur7);
 		monAccord.AjouteAlaListe();

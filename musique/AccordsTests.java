@@ -25,6 +25,10 @@ public class AccordsTests {
 		uke.testeTrouveAccordPosition(true);
 
 		testeChercheTypeAccord();
+		Accord monAccord = new Accord ("Cm7");
+
+		// Tests transposer
+		teste_Transposer(monAccord,2,"Dm7");
 	}
 	
 	// Teste la classe en affichant une collection d'accords C D E F G A B
@@ -112,6 +116,7 @@ public class AccordsTests {
 		Accord monAccord = new Accord("C6");
 		System.out.println( monAccord.chercheTypeAccord(true));
 		monAccord.afficheConsole();
+		
 	}
 	
 	public static void teste1ChercheTypeAccord(String nomNote, int[] tabDegres, String resultat){
@@ -123,5 +128,14 @@ public class AccordsTests {
 			System.out.println("Erreur pour trouver "+resultat+" ==> " + monAccord.nomAbrege());
 	}
 
+	public static void teste_Transposer(Accord monAccord, int transpose, String resultat)
+	{
+		Accord autreAccord = new Accord(monAccord);
+		autreAccord.transpose(transpose);
+		if (monAccord.nomAbrege().equals(resultat))
+			System.out.println(resultat + " trouvé");
+		else
+			System.out.println("Erreur pour trouver "+resultat+" ==> " + monAccord.nomAbrege());
+	}
 
 }
