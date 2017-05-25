@@ -11,12 +11,22 @@ public class AccordNomFamille {
 	private String nomAccord;
 
 	///////////////////////// Constructeurs /////////////////////////////////
+	// constructeur par défaut
 	public AccordNomFamille() {
 		degres = new ArrayList<Integer>();
 		degres.add(1);
 		nomAccord = "X";
 	}
 
+	// constructeur par copie
+	public AccordNomFamille(AccordNomFamille autreAccord) {
+		degres = new ArrayList<Integer>();
+		for (Integer monInt : autreAccord.getDegres())
+			degres.add(monInt);
+		nomAccord = autreAccord.getNomAccord();
+	}
+
+	// Constructeur par nom + tableau d'entiers
 	public AccordNomFamille(String nom, Integer[] degres) {
 		this.degres = new ArrayList<Integer>();
 		setDegres(degres);
@@ -89,11 +99,11 @@ public class AccordNomFamille {
 		Integer[] accordMajeur9 = { 1, 3, 5, 11 };
 
 		monAccord = new AccordNomFamille();
-		monAccord.setDegres(new Integer[] { 4, 8, 11 });
+		monAccord.setDegres(new Integer[] { 5, 8 });
 		monAccord.AjouteAlaListe();
-		
+
 		monAccord = new AccordNomFamille();
-		monAccord.ajouteDegre(3);
+		monAccord.ajouteDegre(4);
 		monAccord.ajouteDegre(8);
 		monAccord.setNomAccord("m");
 		monAccord.AjouteAlaListe();

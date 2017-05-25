@@ -3,7 +3,7 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// TODO : gérer dans la fenetre les retours de chariot tab et autres séparateurs
+// DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
 // TODO : proposer l'enregistrement dans un fichier texte
 // TODO : proposer la lecture depuis un fichier texte
 // TODO : débuguer le transpose négatif qui "bloque"
