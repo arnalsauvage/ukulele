@@ -135,7 +135,7 @@ public class AccordsTests {
 		if (monAccord.nomAbrege().equals(resultat))
 			System.out.println(resultat + " trouvé");
 		else
-			System.out.println("Erreur pour trouver "+resultat+" ==> " + monAccord.nomAbrege());
+			System.out.println("Erreur pour trouver " + monAccord.nomAbrege() + " ==>" + resultat );
 	}
 
 }

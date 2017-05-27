@@ -33,8 +33,8 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		maGrille = new GrilleMorceau();
 		requestFocusInWindow();
 		addKeyListener(this);
-		
-		//Affichage des boutons
+
+		// Affichage des boutons
 		boutonAfficheGrille = new JButton("Affiche grille");
 		boutonAfficheGrille.addActionListener(this);
 		this.add(boutonAfficheGrille);
@@ -50,11 +50,12 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		this.add(lblTranspose);
 
 		// Cheek to cheek
-//		texteGrille = new JTextArea(
-//				"F6 F Cdim Gm7-5 C7 F FM7 Dm Am7-5 D7 A# A#9 G#dim Gm7-5 F Am7-5 D7 A#9 G#dim C7 C#9 C7 F Cdim C7", 5,
-//				50);
-				
-//Hello Dolly				
+		// texteGrille = new JTextArea(
+		// "F6 F Cdim Gm7-5 C7 F FM7 Dm Am7-5 D7 A# A#9 G#dim Gm7-5 F Am7-5 D7
+		// A#9 G#dim C7 C#9 C7 F Cdim C7", 5,
+		// 50);
+
+		// Hello Dolly
 		texteGrille = new JTextArea(
 				"C C Am Am CM7 B7 Cdim Dm \n G7 Dm Dm Bb Bb Dm G7 C \n Cdim Dm G7 C C Am Am Gm7 \n C7 F E7 Am Em Am Em D7 \n G7 C Cdim Dm G7",
 				5, 80);
@@ -62,7 +63,7 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 
 		// Gestion du combo "transpose"
 		String[] transposeStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
-		JComboBox comboTranspose = new JComboBox(transposeStrings);
+		comboTranspose = new JComboBox(transposeStrings);
 		comboTranspose.setSelectedItem(transposition);
 		this.add(comboTranspose);
 		comboTranspose.addActionListener(this);
@@ -79,6 +80,11 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 			transposition++;
 		if (evt.getSource() == btnTransposeMoins)
 			transposition--;
+
+		if (transposition > 11)
+			transposition -= 12;
+		if (transposition < 0)
+			transposition += 12;
 
 		if (evt.getSource() == comboTranspose)
 			transposition = comboTranspose.getSelectedIndex();
@@ -97,25 +103,27 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		Random rand = new Random();
 		this.setBackground(Color.white);
 		g.clearRect(0, 0, this.getWidth(), this.getHeight());
-//		Diagramme monDiagramme = new Diagramme(g, x, y, maTaillex, maTailley);
-//			for (int i = 0; i < 10; i++) {
-//				for (int j = 0; j < 4; j++) {
-//					Position maposition = new Position(rand.nextInt(6) - 1, rand.nextInt(6) - 1, rand.nextInt(6) - 1,
-//							rand.nextInt(6) - 1);
-//					monDiagramme = new Diagramme(g, x + i * maTaillex + i * maTaillex / 2,
-//							y + j * maTailley + j * maTailley / 2, maTaillex, maTailley);
-//					monDiagramme.dessine(maposition);
-//				}
-//			}
+		// Diagramme monDiagramme = new Diagramme(g, x, y, maTaillex,
+		// maTailley);
+		// for (int i = 0; i < 10; i++) {
+		// for (int j = 0; j < 4; j++) {
+		// Position maposition = new Position(rand.nextInt(6) - 1,
+		// rand.nextInt(6) - 1, rand.nextInt(6) - 1,
+		// rand.nextInt(6) - 1);
+		// monDiagramme = new Diagramme(g, x + i * maTaillex + i * maTaillex /
+		// 2,
+		// y + j * maTailley + j * maTailley / 2, maTaillex, maTailley);
+		// monDiagramme.dessine(maposition);
+		// }
+		// }
 		testeGrille(g, 8, 10, 150, 50, 60);
 	}
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_F1) {
 		}
-		if (e.getKeyCode() == KeyEvent.VK_F2)
-		{
-			
+		if (e.getKeyCode() == KeyEvent.VK_F2) {
+
 		}
 	}
 
@@ -139,7 +147,7 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 
 		maGrille.AfficheMorceau(g, accordsParLigne, x, y, maTaillex, maTailley);
 		y += maTailley / 2 + maTailley * (nbLignes + 1);
-//		maGrille.transpose(1);
+		// maGrille.transpose(1);
 		// }
 		//
 		// maGrille.afficheTexte();
