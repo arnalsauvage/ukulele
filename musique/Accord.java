@@ -14,6 +14,9 @@ import java.util.Arrays;
 // DONE : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
 
 public class Accord {
+
+//	static AccordNomFamille dicoAccords = new AccordNomFamille();
+
 	private NoteNom fondamentale; // Fondamentale de l'accord, ex: "C" pour do
 									// majeur 4è octave
 	private ArrayList<Integer> degres; // Degrés des accords, exemple 1,5,8 pour
@@ -32,7 +35,7 @@ public class Accord {
 	// Testé dans la méthode main de la classe AccordsTest
 	public Accord(String nom) {
 		String nomFondamentale;
-		String description;
+		String description = "";
 
 		if (nom.length() == 1)
 			nomFondamentale = nom.substring(0, 1).toUpperCase();
@@ -44,65 +47,67 @@ public class Accord {
 		}
 
 		fondamentale = new NoteNom(nomFondamentale);
-		description = nom.substring(nomFondamentale.length());
+		if (nomFondamentale.length()<nom.length())
+			description = nom.substring(nomFondamentale.length());
 
 		degres = new ArrayList<Integer>();
-		// Le Top 11 des accords les plus utilisés
-		int[] powerChord = { 1, 8 };
-		int[] accordMajeur = { 1, 5, 8 };
-		int[] accordMajeurAugmente = { 1, 5, 9 };
-		int[] accordMajeur6 = { 1, 5, 8, 10 };
-		int[] accordMineur = { 1, 4, 8 };
-		int[] accordMineur6 = { 1, 4, 8, 10 };
-		int[] accordDiminue = { 1, 4, 7 };
-		int[] accordDiminue7 = { 1, 4, 7, 10 };
-		int[] accordMajeur7 = { 1, 5, 8, 11 };
-		int[] accordMajeur7maj = { 1, 5, 8, 12 };
-		int[] accordMineur7 = { 1, 4, 8, 11 };
-		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
-		int[] accordMajeur9 = { 1, 3, 5, 11 };
-
-		switch (description) {
-		case "":
-			setDegres(accordMajeur);
-			break;
-		case "5":
-			setDegres(powerChord);
-			break;
-		case "aug":
-			setDegres(accordMajeurAugmente);
-			break;
-		case "6":
-			setDegres(accordMajeur6);
-			break;
-		case "m":
-			setDegres(accordMineur);
-			break;
-		case "m6":
-			setDegres(accordMineur6);
-			break;
-		case "dim":
-			setDegres(accordDiminue);
-			break;
-		case "dim7":
-			setDegres(accordDiminue7);
-			break;
-		case "7":
-			setDegres(accordMajeur7);
-			break;
-		case "M7":
-			setDegres(accordMajeur7maj);
-			break;
-		case "m7":
-			setDegres(accordMineur7);
-			break;
-		case "m7-5":
-			setDegres(accordMineur7quinteB);
-			break;
-		case "9":
-			setDegres(accordMajeur9);
-			break;
-		}
+		degres = AccordNomFamille.getDegres(description);
+//		// Le Top 11 des accords les plus utilisés
+//		int[] powerChord = { 1, 8 };
+//		int[] accordMajeur = { 1, 5, 8 };
+//		int[] accordMajeurAugmente = { 1, 5, 9 };
+//		int[] accordMajeur6 = { 1, 5, 8, 10 };
+//		int[] accordMineur = { 1, 4, 8 };
+//		int[] accordMineur6 = { 1, 4, 8, 10 };
+//		int[] accordDiminue = { 1, 4, 7 };
+//		int[] accordDiminue7 = { 1, 4, 7, 10 };
+//		int[] accordMajeur7 = { 1, 5, 8, 11 };
+//		int[] accordMajeur7maj = { 1, 5, 8, 12 };
+//		int[] accordMineur7 = { 1, 4, 8, 11 };
+//		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
+//		int[] accordMajeur9 = { 1, 3, 5, 11 };
+//
+//		switch (description) {
+//		case "":
+//			setDegres(accordMajeur);
+//			break;
+//		case "5":
+//			setDegres(powerChord);
+//			break;
+//		case "aug":
+//			setDegres(accordMajeurAugmente);
+//			break;
+//		case "6":
+//			setDegres(accordMajeur6);
+//			break;
+//		case "m":
+//			setDegres(accordMineur);
+//			break;
+//		case "m6":
+//			setDegres(accordMineur6);
+//			break;
+//		case "dim":
+//			setDegres(accordDiminue);
+//			break;
+//		case "dim7":
+//			setDegres(accordDiminue7);
+//			break;
+//		case "7":
+//			setDegres(accordMajeur7);
+//			break;
+//		case "M7":
+//			setDegres(accordMajeur7maj);
+//			break;
+//		case "m7":
+//			setDegres(accordMineur7);
+//			break;
+//		case "m7-5":
+//			setDegres(accordMineur7quinteB);
+//			break;
+//		case "9":
+//			setDegres(accordMajeur9);
+//			break;
+//		}
 	}
 
 	// Constructeur par copie
@@ -149,65 +154,67 @@ public class Accord {
 	// Cherche le type d'accord pour le renversement en cours
 	// Testée dans la méthode main de cette classe via afficheConsole
 	public String nomAbrege() {
-		String noms = "";
+//		String noms = "";
 
-		int[] powerChord = { 1, 8 };
-		int[] accordMajeur = { 1, 5, 8 };
-		int[] accordMajeurAugmente = { 1, 5, 9 };
-		int[] accordMajeur6 = { 1, 5, 8, 10 };
-		int[] accordMineur = { 1, 4, 8 };
-		int[] accordMineur6 = { 1, 4, 8, 10 };
-		int[] accordDiminue = { 1, 4, 7 };
-		int[] accordDiminue7 = { 1, 4, 7, 10 };
-		int[] accordMajeur7 = { 1, 5, 8, 11 };
-		int[] accordMajeur7maj = { 1, 5, 8, 12 };
-		int[] accordMineur7 = { 1, 4, 8, 11 };
-		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
-		int[] accordMajeur9 = { 1, 3, 5, 11 };
+//		int[] powerChord = { 1, 8 };
+//		int[] accordMajeur = { 1, 5, 8 };
+//		int[] accordMajeurAugmente = { 1, 5, 9 };
+//		int[] accordMajeur6 = { 1, 5, 8, 10 };
+//		int[] accordMineur = { 1, 4, 8 };
+//		int[] accordMineur6 = { 1, 4, 8, 10 };
+//		int[] accordDiminue = { 1, 4, 7 };
+//		int[] accordDiminue7 = { 1, 4, 7, 10 };
+//		int[] accordMajeur7 = { 1, 5, 8, 11 };
+//		int[] accordMajeur7maj = { 1, 5, 8, 12 };
+//		int[] accordMineur7 = { 1, 4, 8, 11 };
+//		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
+//		int[] accordMajeur9 = { 1, 3, 5, 11 };
 
 		Accord maCopie = new Accord(this);
 		maCopie.simplifie();
-
-		if (maCopie.egale(accordMineur7quinteB)) {
-			noms = rajoute(noms, fondamentale.getNom() + "m7-5", ";");
-		}
-		if (maCopie.egale(powerChord)) {
-			noms = rajoute(noms, fondamentale.getNom() + "5", ";");
-		}
-		if (maCopie.egale(accordMajeur)) {
-			noms = rajoute(noms, fondamentale.getNom(), ";");
-		}
-		if (maCopie.egale(accordMajeurAugmente)) {
-			noms = rajoute(noms, fondamentale.getNom() + "aug", ";");
-		}
-		if (maCopie.egale(accordMajeur6)) {
-			noms = rajoute(noms, fondamentale.getNom() + "6", ";");
-		}
-		if (maCopie.egale(accordMineur)) {
-			noms = rajoute(noms, fondamentale.getNom() + "m", ";");
-		}
-		if (maCopie.egale(accordMineur6)) {
-			noms = rajoute(noms, fondamentale.getNom() + "m6", ";");
-		}
-		if (maCopie.egale(accordMajeur7)) {
-			noms = rajoute(noms, fondamentale.getNom() + "7", ";");
-		}
-		if (maCopie.egale(accordMajeur7maj)) {
-			noms = rajoute(noms, fondamentale.getNom() + "M7", ";");
-		}
-		if (maCopie.egale(accordMineur7)) {
-			noms = rajoute(noms, fondamentale.getNom() + "m7", ";");
-		}
-		if (maCopie.egale(accordDiminue)) {
-			noms = rajoute(noms, fondamentale.getNom() + "dim", ";");
-		}
-		if (maCopie.egale(accordDiminue7)) {
-			noms = rajoute(noms, fondamentale.getNom() + "dim7", ";");
-		}
-		if (maCopie.egale(accordMajeur9)) {
-			noms = rajoute(noms, fondamentale.getNom() + "9", ";");
-		}
-		return (noms);
+		String noms ="";
+		noms = rajoute(noms, fondamentale.getNom() + AccordNomFamille.getNomFamille(maCopie.degres), ";");
+		return noms;
+//		if (maCopie.egale(accordMineur7quinteB)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "m7-5", ";");
+//		}
+//		if (maCopie.egale(powerChord)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "5", ";");
+//		}
+//		if (maCopie.egale(accordMajeur)) {
+//			noms = rajoute(noms, fondamentale.getNom(), ";");
+//		}
+//		if (maCopie.egale(accordMajeurAugmente)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "aug", ";");
+//		}
+//		if (maCopie.egale(accordMajeur6)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "6", ";");
+//		}
+//		if (maCopie.egale(accordMineur)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "m", ";");
+//		}
+//		if (maCopie.egale(accordMineur6)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "m6", ";");
+//		}
+//		if (maCopie.egale(accordMajeur7)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "7", ";");
+//		}
+//		if (maCopie.egale(accordMajeur7maj)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "M7", ";");
+//		}
+//		if (maCopie.egale(accordMineur7)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "m7", ";");
+//		}
+//		if (maCopie.egale(accordDiminue)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "dim", ";");
+//		}
+//		if (maCopie.egale(accordDiminue7)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "dim7", ";");
+//		}
+//		if (maCopie.egale(accordMajeur9)) {
+//			noms = rajoute(noms, fondamentale.getNom() + "9", ";");
+//		}
+//		return (noms);
 	}
 
 	// Le renversement monte la base actuelle de 1 octave :
@@ -332,7 +339,9 @@ public class Accord {
 		NoteNom maNote;
 		maNote = new NoteNom("C");
 		monAccord = new Accord(maNote, accordMajeur);
-
+		
+		AccordNomFamille.creeCatalogueAccords();
+		
 		// CalculeNote est validé par l'appel de AfficheConsole
 
 		// Teste la méthode egale

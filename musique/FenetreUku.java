@@ -28,7 +28,9 @@ public class FenetreUku extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		AccordNomFamille.creeCatalogueAccords();
 		FenetreUku fen;
+
 		fen = new FenetreUku();
 		fen.isCursorSet();
 	}
