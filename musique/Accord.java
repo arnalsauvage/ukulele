@@ -3,15 +3,15 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
+// TODO : familleAccord .lireDepuisFichTexte, comparer 
 // TODO : proposer l'enregistrement dans un fichier texte
 // TODO : proposer la lecture depuis un fichier texte
-// DONE : débuguer le transpose négatif qui "bloque"
-// TODO : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
-// TODO : familleAccord .lireDepuisFichTexte, comparer 
 // TODO : uniquement les accords fermés
 // TODO : proposer les accords les plus proches
 // TODO : classer en 3 niveaux : ébutants, confirmé et champion
+// DONE : débuguer le transpose négatif qui "bloque"
+// DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
+// DONE : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
 
 public class Accord {
 	private NoteNom fondamentale; // Fondamentale de l'accord, ex: "C" pour do
