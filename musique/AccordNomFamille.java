@@ -1,7 +1,6 @@
 package musique;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AccordNomFamille {
 	// Liste pour stocker l'ensemble des accords

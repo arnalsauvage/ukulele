@@ -13,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class Panneau extends JPanel implements KeyListener, ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -116,7 +115,7 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		// monDiagramme.dessine(maposition);
 		// }
 		// }
-		testeGrille(g, 8, 10, 150, 50, 60);
+		testeGrille(g, 8, 10, 150, maTaillex, maTailley);
 	}
 
 	public void keyPressed(KeyEvent e) {
