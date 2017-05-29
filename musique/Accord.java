@@ -173,7 +173,8 @@ public class Accord {
 		Accord maCopie = new Accord(this);
 		maCopie.simplifie();
 		String noms ="";
-		noms = rajoute(noms, fondamentale.getNom() + AccordNomFamille.getNomFamille(maCopie.degres), ";");
+		if (!AccordNomFamille.getNomFamille(maCopie.degres).equals("ko"))
+			noms = rajoute(noms, fondamentale.getNom() + AccordNomFamille.getNomFamille(maCopie.degres), ";");
 		return noms;
 //		if (maCopie.egale(accordMineur7quinteB)) {
 //			noms = rajoute(noms, fondamentale.getNom() + "m7-5", ";");
@@ -337,31 +338,34 @@ public class Accord {
 		int[] accordMajeur = { 1, 5, 8, 13 };
 		Accord monAccord;
 		NoteNom maNote;
+
+		AccordNomFamille.creeCatalogueAccords();
+		
 		maNote = new NoteNom("C");
 		monAccord = new Accord(maNote, accordMajeur);
 		
-		AccordNomFamille.creeCatalogueAccords();
-		
 		// CalculeNote est validé par l'appel de AfficheConsole
 
+		
+		
 		// Teste la méthode egale
 		System.out.println("///// Test de la méthode egale /////");
 		if (monAccord.egale(accordMajeur))
 			System.out.println("Fonction egale ok pour un accord identique");
 		else
-			System.out.println("Fonction egale KO pour un accord identique !!!");
+			System.err.println("Fonction egale KO pour un accord identique !!!");
 
 		int[] autreAccord = { 1, 5, 8 };
 		if (!monAccord.egale(autreAccord))
 			System.out.println("Fonction egale ok pour un accord avec un nombre différent de degrés");
 		else
-			System.out.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
+			System.err.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
 
 		int[] accord3 = { 1, 3, 8, 13 };
 		if (!monAccord.egale(accord3))
 			System.out.println("Fonction egale ok pour un accord avec un degré différent");
 		else
-			System.out.println("Fonction egale KO pour un accord avec un degré différent !!!");
+			System.err.println("Fonction egale KO pour un accord avec un degré différent !!!");
 
 		// Teste méthode compare
 		Accord mon2emeAccord = new Accord(maNote, accordMajeur);
@@ -369,19 +373,19 @@ public class Accord {
 		if (monAccord.compare(mon2emeAccord))
 			System.out.println("Fonction egale ok pour un accord identique");
 		else
-			System.out.println("Fonction egale KO pour un accord identique !!!");
+			System.err.println("Fonction egale KO pour un accord identique !!!");
 
 		mon2emeAccord = new Accord("C");
 		if (!monAccord.compare(mon2emeAccord))
 			System.out.println("Fonction egale ok pour un accord avec un nombre différent de degrés");
 		else
-			System.out.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
+			System.err.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
 
 		mon2emeAccord = new Accord(maNote, accord3);
 		if (!monAccord.compare(mon2emeAccord))
 			System.out.println("Fonction egale ok pour un accord avec un degré différent");
 		else
-			System.out.println("Fonction egale KO pour un accord avec un degré différent !!!");
+			System.err.println("Fonction egale KO pour un accord avec un degré différent !!!");
 
 		// Teste le simplifie accord
 		System.out.println("\n///// Test de la méthode simplifie /////");
@@ -401,6 +405,6 @@ public class Accord {
 		if (mon3emeAccord.compare(mon2emeAccord))
 			System.out.println("\nFonction compare ok pour un accord égal");
 		else
-			System.out.println("\nFonction egale KO pour un accord égal !!!");
+			System.err.println("\nFonction egale KO pour un accord égal !!!");
 	}
 }

@@ -8,6 +8,8 @@ public class AccordsTests {
 		int [] accordMineur7 = {1,4,8,11};
 		int [] accordMajeur9 = {1,5,8,15};
 
+		AccordNomFamille.creeCatalogueAccords();
+		
 		System.out.println("=====Tests du constructeur, de calculeNotes et de affiche");
 		testeTypeAccord(accordMajeur,  "1)Affichage accords majeurs");
 		testeTypeAccord(accordMajeur7, "2)Affichage accords majeurs 7è");
@@ -65,7 +67,15 @@ public class AccordsTests {
 	
 	public static void testeConstructeurString(){
 		System.out.println("\n5)Test du constructeur par une chaine : Cm7 C#dim7 Cb7 C5 Fm7-5"); 
-		Accord monAccord = new Accord("Cm7");
+		Accord monAccord = new Accord("C");
+		monAccord.afficheConsole();
+		monAccord = new Accord("D");
+		monAccord.afficheConsole();
+		monAccord = new Accord("E");
+		monAccord.afficheConsole();
+		monAccord = new Accord("F");
+		monAccord.afficheConsole();
+		 monAccord = new Accord("Cm7");
 		monAccord.afficheConsole();
 		monAccord = new Accord("C#dim7");
 		monAccord.afficheConsole();
@@ -73,7 +83,7 @@ public class AccordsTests {
 		monAccord.afficheConsole();
 		monAccord = new Accord("C5");
 		monAccord.afficheConsole();
-		monAccord = new Accord("Fm7-5");
+		monAccord = new Accord("Fm75b");
 		monAccord.afficheConsole();
 	}
 
@@ -125,17 +135,17 @@ public class AccordsTests {
 		if (monAccord.nomAbrege().equals(resultat))
 			System.out.println(resultat + " trouvé");
 		else
-			System.out.println("Erreur pour trouver "+resultat+" ==> " + monAccord.nomAbrege());
+			System.err.println("Erreur pour trouver "+resultat+" ==> " + monAccord.nomAbrege());
 	}
 
 	public static void teste_Transposer(Accord monAccord, int transpose, String resultat)
 	{
 		Accord autreAccord = new Accord(monAccord);
 		autreAccord.transpose(transpose);
-		if (monAccord.nomAbrege().equals(resultat))
+		if (autreAccord.nomAbrege().equals(resultat))
 			System.out.println(resultat + " trouvé");
 		else
-			System.out.println("Erreur pour trouver " + monAccord.nomAbrege() + " ==>" + resultat );
+			System.err.println("Erreur pour trouver " + monAccord.nomAbrege() + " ==>" + resultat  +  " résultat trouvé : " + autreAccord.nomAbrege());
 	}
 
 }

@@ -55,7 +55,7 @@ public class AccordNomFamille {
 	}
 
 	public void ajouteDegre(Integer degre) {
-		if ( ! degres.contains(degres))
+		if (!degres.contains(degres))
 			this.degres.add(degre);
 	}
 
@@ -87,7 +87,7 @@ public class AccordNomFamille {
 		if (getNomDeFamilleAccord(Accord).equals(resultat))
 			System.out.println("Test " + Accord + " ok");
 		else
-			System.out.println("Test " + Accord + " ko : retourne " + getNomDeFamilleAccord(Accord));
+			System.err.println("Test " + Accord + " ko : retourne " + getNomDeFamilleAccord(Accord));
 	}
 
 	// Teste le nom de famille
@@ -147,7 +147,7 @@ public class AccordNomFamille {
 		if (getDegres(nom).equals(resultat))
 			System.out.println("Test " + nom + " ok : " + resultat);
 		else
-			System.out.println(" !!! Test " + nom + " ko : retourne " + getDegres(nom) + "(" + resultat + " attendu)");
+			System.err.println(" !!! Test " + nom + " ko : retourne " + getDegres(nom) + "(" + resultat + " attendu)");
 	}
 
 	// Renvoie les degrés de l'accord désigné par son nom de famille
@@ -157,6 +157,7 @@ public class AccordNomFamille {
 				return (monANF.degres);
 		return null;
 	}
+
 	// Teste la fonction getNom
 	public static void testeGetNomFamille() {
 		Integer[] powerChord = { 1, 8 };
@@ -168,33 +169,35 @@ public class AccordNomFamille {
 		System.out.println("\n=== Démarrage des tests pour la fonction getNom ===");
 
 		monANF.setDegres(powerChord);
-		testeUnGetNom(monANF.getDegres(),"5");
+		testeUnGetNom(monANF.getDegres(), "5");
 
 		monANF.setDegres(accordMajeur);
-		testeUnGetNom(monANF.getDegres(),"");
+		testeUnGetNom(monANF.getDegres(), "");
 
 		monANF.setDegres(accordMajeurAugmente);
-		testeUnGetNom(monANF.getDegres(),"5aug");
+		testeUnGetNom(monANF.getDegres(), "aug");
 
 		monANF.setDegres(accordMajeur6);
-		testeUnGetNom(monANF.getDegres(),"6");
+		testeUnGetNom(monANF.getDegres(), "6");
 
 		System.out.println("=== Fin des tests pour la fonction getNom ===");
 	}
 
 	// Fait une occurrence de test pour getDegres
-	private static void testeUnGetNom(ArrayList<Integer> degres, String resultat ) {
+	private static void testeUnGetNom(ArrayList<Integer> degres, String resultat) {
 		if (getNomFamille(degres).equals(resultat))
 			System.out.println("Test " + degres + " ok : " + resultat);
 		else
-			System.out.println(" !!! Test " + degres + " ko : retourne " + getNomFamille(degres) + "(" + resultat + " attendu)");
+			System.err.println(
+					" !!! Test " + degres + " ko : retourne " + getNomFamille(degres) + "(" + resultat + " attendu)");
 	}
+
 	// Renvoie le nom de famille de l'accord identifié par ses degrés
 	public static String getNomFamille(ArrayList<Integer> degres) {
 		for (AccordNomFamille monANF : AccordNomFamille.mesAccords)
 			if (monANF.degres.equals(degres))
 				return (monANF.nomAccord);
-		return "";
+		return "ko";
 	}
 
 	public static void creeCatalogueAccords() {
@@ -212,7 +215,8 @@ public class AccordNomFamille {
 		Integer[] accordMajeur7maj = { 1, 5, 8, 12 };
 		Integer[] accordMineur7 = { 1, 4, 8, 11 };
 		Integer[] accordMineur7quinteB = { 1, 4, 7, 11 };
-		Integer[] accordMajeur9 = { 1, 3, 5, 11 };
+		Integer[] accordMajeur79 = { 1, 3, 5, 11 };
+		Integer[] accordMajeur9 = { 1, 5, 8, 15 };
 
 		monAccord = new AccordNomFamille();
 		monAccord.setDegres(new Integer[] { 1, 5, 8 });
@@ -252,7 +256,9 @@ public class AccordNomFamille {
 		monAccord.AjouteAlaListe();
 		monAccord = new AccordNomFamille("m6", accordMineur6);
 		monAccord.AjouteAlaListe();
-		monAccord = new AccordNomFamille("79", accordMajeur9);
+		monAccord = new AccordNomFamille("9", accordMajeur9);
+		monAccord.AjouteAlaListe();
+		monAccord = new AccordNomFamille("79", accordMajeur79);
 		monAccord.AjouteAlaListe();
 	}
 

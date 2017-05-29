@@ -1,6 +1,13 @@
 package musique;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Position {
+	
+	// Liste pour stocker l'ensemble des positions correspondant à des accords
+	static HashMap<String,ArrayList<Position>> toutesLesPositionsDaccord = new HashMap<String,ArrayList<Position>> ();
+
 	// Corde non jouée = -1 sinon, numéro de frette
 	private int[] valCorde;
 
@@ -125,6 +132,8 @@ public class Position {
 		Accord accordTrouve;
 		String NomAccord;
 
+		AccordNomFamille.creeCatalogueAccords();
+		
 		for (int a = 0; a<5 ; a++)
 			for (int b = 0; b<5 ; b++)
 				for (int c = 0; c<5 ; c++)

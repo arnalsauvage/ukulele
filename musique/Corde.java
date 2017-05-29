@@ -33,7 +33,7 @@ public class Corde {
 		if (maCorde.getNoteRacine().getNom().equals("A"))
 			System.out.println("getNoteRacine ok : la méthode renvoie 'A'");
 		else
-			System.out.println("getNoteRacine KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
+			System.err.println("getNoteRacine KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
 			
 		Note maNote = new Note("C",4);
 		// Test de la méthode setNoteRacine
@@ -42,13 +42,13 @@ public class Corde {
 		if (maCorde.getNoteRacine().getNom().equals("C"))
 			System.out.println("test ok : la méthode renvoie 'C'");
 		else
-			System.out.println("test KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
+			System.err.println("test KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
 					
 		// test de la méthode NoteDeLaFrette
 		System.out.println("=====Note de la frette 4 en do (mi attendu) : ");
 		if (maCorde.noteDeLaFrette(4).getNom().equals("E"))
 			System.out.println("test ok : la méthode renvoie 'E'");
 		else
-			System.out.println("test KO !!!  la méthode renvoie " + maCorde.noteDeLaFrette(4).getNom());
+			System.err.println("test KO !!!  la méthode renvoie " + maCorde.noteDeLaFrette(4).getNom());
 	}
 }
