@@ -44,8 +44,8 @@ public class Position {
 	{
 		int ecartement;
 		int difficulte;
-		int minVal = Integer.MAX_VALUE;
-		int maxVal = Integer.MIN_VALUE;
+		int minVal = Integer.MAX_VALUE; // Case la plus basse jouée
+		int maxVal = Integer.MIN_VALUE; // Case la plus haute jouée
 
 		for(int i = 0; i < valCorde.length; i++){
 			if(valCorde[i]>0 && valCorde[i] < minVal)
@@ -61,9 +61,11 @@ public class Position {
 				nbreCordesJouees++;
 		}
 		difficulte = nbreCordesJouees;
+		
 		// Un écartement de + de 3 , c'est dur !
 		if (ecartement>3)
 			difficulte += ecartement -3;
+		
 		// Plus on est loin du début du manche, + ça fait peur !
 		if (minVal > 3 && minVal != Integer.MAX_VALUE)
 			difficulte += minVal -3;
@@ -81,7 +83,7 @@ public class Position {
 		Ukulele monUke = new Ukulele();
 
 		// On essayera en position frette 0 à 11
-		for (int i = 0; i<12;i++){
+		for (int i = -1; i<12;i++){
 			// Espacement de 4 frettes pour toutes les cordes
 			for (int a = 0; a<5; a++){
 				for (int b = 0; b<5; b++){

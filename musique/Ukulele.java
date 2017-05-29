@@ -16,7 +16,7 @@ public class Ukulele {
 		corde4 = new Corde("A",4);
 	}
 
-	// Cette méthode va chercher l'accord corespondant à une position
+	// Cette méthode va chercher l'accord correspondant à une position
 	public Accord trouveAccordPosition(int a, int b, int c, int d)
 	{
 		Note maNote;

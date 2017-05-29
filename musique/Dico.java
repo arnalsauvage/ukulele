@@ -86,6 +86,7 @@ public class Dico {
 
 	// Procédure de test
 	public static void main(String[] args) {
+		AccordNomFamille.creeCatalogueAccords();
 		Dico dicoTest = testeGetEtRemplace();
 
 		dicoTest.remplitDico();
@@ -135,7 +136,7 @@ public class Dico {
 
 		if (!laPosition.equals(laPosition2))
 			System.out.println("!!! Test Remplace ko !!!");
-
+		System.out.println("----- Fin teste Get et Remplace -----");
 		return dicoTest;
 	}
 
