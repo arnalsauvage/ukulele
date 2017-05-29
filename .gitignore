@@ -1,0 +1,6 @@
+target
+code_samples/.classpath
+code_samples/.gitignore
+code_samples/.project
+code_samples/.settings/*
+*.swp
