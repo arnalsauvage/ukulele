@@ -6,15 +6,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class Panneau extends JPanel implements KeyListener, ActionListener {
+public class PanneauInterface extends JPanel implements KeyListener, ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	boolean testeGrille = false;
@@ -25,10 +31,14 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 	private int transposition = 0;
 	private JLabel lblTranspose = new JLabel("Transpose");
 	private JComboBox comboTranspose;
+	// Create a file chooser
+	private JButton choixOpenFic;
 
 	GrilleMorceau maGrille;
 
-	public Panneau() {
+	private PanneauMorceau panneauMorceau;
+	
+	public PanneauInterface() {
 		maGrille = new GrilleMorceau();
 		requestFocusInWindow();
 		addKeyListener(this);
@@ -55,17 +65,44 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		// 50);
 
 		// Hello Dolly
-		texteGrille = new JTextArea(
-				"C C Am Am CM7 B7 Cdim Dm \n G7 Dm Dm Bb Bb Dm G7 C \n Cdim Dm G7 C C Am Am Gm7 \n C7 F E7 Am Em Am Em D7 \n G7 C Cdim Dm G7",
-				5, 80);
-		this.add(texteGrille);
-
 		// Gestion du combo "transpose"
 		String[] transposeStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
 		comboTranspose = new JComboBox(transposeStrings);
 		comboTranspose.setSelectedItem(transposition);
 		this.add(comboTranspose);
 		comboTranspose.addActionListener(this);
+
+		texteGrille = new JTextArea(
+				"C C Am Am CM7 B7 Cdim Dm \n G7 Dm Dm Bb Bb Dm G7 C \n Cdim Dm G7 C C Am Am Gm7 \n C7 F E7 Am Em Am Em D7 \n G7 C Cdim Dm G7",
+				5, 80);
+		this.add(texteGrille);
+
+		// Gestion du bouton Open
+		choixOpenFic = new JButton("Ouvrir...");
+
+		this.add(choixOpenFic);
+		choixOpenFic.addActionListener(this);
+
+	}
+	
+	public String lireFichierTexte(File fichier){
+		String machaine = "";
+		//lecture du fichier texte	
+				try{
+					InputStream ips=new FileInputStream(fichier); 
+					InputStreamReader ipsr=new InputStreamReader(ips);
+					BufferedReader br=new BufferedReader(ipsr);
+					String ligne;
+					while ((ligne=br.readLine())!=null){
+						System.out.println(ligne);
+						machaine+=ligne+"\n";
+					}
+					br.close(); 
+				}		
+				catch (Exception e){
+					System.out.println(e.toString());
+				}
+				return machaine;
 	}
 
 	public void actionPerformed(ActionEvent evt) {
@@ -74,6 +111,7 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 			while (texteGrille.getText().contains("  "))
 				texteGrille.setText(texteGrille.getText().replaceAll("  ", " "));
 			texteGrille.setText(texteGrille.getText().replaceAll(" ", "\t"));
+			panneauMorceau.setTexteAtraiter(texteGrille.getText());
 		}
 		if (evt.getSource() == btnTransposePlus)
 			transposition++;
@@ -87,35 +125,29 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 
 		if (evt.getSource() == comboTranspose)
 			transposition = comboTranspose.getSelectedIndex();
+
+		if (evt.getSource() == choixOpenFic) {
+//			int returnVal = showOpenDialog(PanneauInterface.this);
+//
+//			if (returnVal == JFileChooser.APPROVE_OPTION) {
+//				File file = choixOpenFic.getSelectedFile();
+//				texteGrille.setText(lireFichierTexte(file));
+//			}
+		}
+
 		comboTranspose.setSelectedIndex(transposition);
 		lblTranspose.setText("Transpose : " + transposition);
 		repaint();
 	}
 
-	public void paintComponent(Graphics g) {
-		// Largeur et hauteur d'un diagramme
-		int maTaillex = 60;
-		int maTailley = 80;
-		// Point de départ du dessin
-		int x = 20 + texteGrille.getX();
-		int y = 30 + texteGrille.getY() + texteGrille.getHeight();
-		Random rand = new Random();
-		this.setBackground(Color.white);
-		g.clearRect(0, 0, this.getWidth(), this.getHeight());
-		// Diagramme monDiagramme = new Diagramme(g, x, y, maTaillex,
-		// maTailley);
-		// for (int i = 0; i < 10; i++) {
-		// for (int j = 0; j < 4; j++) {
-		// Position maposition = new Position(rand.nextInt(6) - 1,
-		// rand.nextInt(6) - 1, rand.nextInt(6) - 1,
-		// rand.nextInt(6) - 1);
-		// monDiagramme = new Diagramme(g, x + i * maTaillex + i * maTaillex /
-		// 2,
-		// y + j * maTailley + j * maTailley / 2, maTaillex, maTailley);
-		// monDiagramme.dessine(maposition);
-		// }
-		// }
-		testeGrille(g, 8, 10, 150, maTaillex, maTailley);
+
+
+	public JPanel getPanneauMorceau() {
+		return panneauMorceau;
+	}
+
+	public void setPanneauMorceau(PanneauMorceau panneauMorceau) {
+		this.panneauMorceau = panneauMorceau;
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -126,42 +158,7 @@ public class Panneau extends JPanel implements KeyListener, ActionListener {
 		}
 	}
 
-	private void testeGrille(Graphics g, int accordsParLigne, int x, int y, int maTaillex, int maTailley) {
-
-		int nbLignes = 3;
-		String texteAtraiter;
-		texteAtraiter = texteGrille.getText();
-		texteAtraiter = texteAtraiter.replaceAll("\t", " ");
-		texteAtraiter = texteAtraiter.replaceAll("\r", " ");
-		texteAtraiter = texteAtraiter.replaceAll("\n", " ");
-		texteAtraiter = texteAtraiter.replaceAll("  ", " ");
-		while (texteAtraiter.contains("  "))
-			texteAtraiter = (texteAtraiter.replaceAll("  ", " "));
-		maGrille.setAccords(texteAtraiter);
-		maGrille.transpose(transposition);
-		// maGrille.afficheTexte();
-
-		// Le code commenté permettait d'afficher les 12 transpositions
-		// for (int boucle= 1; boucle <6; boucle++){
-
-		maGrille.AfficheMorceau(g, accordsParLigne, x, y, maTaillex, maTailley);
-		y += maTailley / 2 + maTailley * (nbLignes + 1);
-		// maGrille.transpose(1);
-		// }
-		//
-		// maGrille.afficheTexte();
-		//
-		// x += 700;
-		// y = 50;
-		// for (int boucle= 1; boucle <6; boucle++){
-		// maGrille.AfficheMorceau(g, accordsParLigne, x, y, maTaillex,
-		// maTailley);
-		// y += maTailley/2 + maTailley*(nbLignes+1);
-		// maGrille.transpose(1); }
-		//
-		// maGrille.afficheTexte();
-	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}

@@ -7,17 +7,21 @@ import java.awt.event.ActionListener;
 
 public class FenetreUku extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	private Panneau pan;
+	private PanneauInterface panInterface;
+	private PanneauMorceau panMorceau;
 
 	public FenetreUku() {
 		this.setTitle("Accords ukulélé");
-		pan = new Panneau();
+		panInterface = new PanneauInterface();
+		panMorceau = new PanneauMorceau();
+		panInterface.setPanneauMorceau(panMorceau);
 		this.setSize(1400, 1250);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.setContentPane(pan);
+		this.add(panInterface);
+		this.add(panMorceau);
 		this.setVisible(true);
-		addKeyListener(pan);
+		addKeyListener(panInterface);
 		// pan.paintComponent(this.getGraphics());
 	}
 
