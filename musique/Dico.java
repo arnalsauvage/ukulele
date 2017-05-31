@@ -112,16 +112,16 @@ public class Dico {
 
 		/////////////////////////// Test get Am7 /////////////////////
 		laPosition = dicoTest.get("Am7");
-		System.out.println("Position de Am7 :" + laPosition.getTexte());
+		System.out.println("Position de Am7 :" + laPosition);
 
-		if (!laPosition.getTexte().equals("position : 0000"))
+		if (!laPosition.toString().equals("position : 0000"))
 			System.out.println("!!! Test get Am7 ko !!!");
 
 		/////////////////////////// Test get C /////////////////////
 		laPosition = dicoTest.get("C");
-		System.out.println("Position de C :" + laPosition.getTexte());
+		System.out.println("Position de C :" + laPosition);
 
-		if (!laPosition.getTexte().equals("position : 0003"))
+		if (!laPosition.equals("position : 0003"))
 			System.out.println("!!! Test get C ko !!!");
 
 		/////////////////////////// Test Remplace /////////////////////
@@ -132,7 +132,7 @@ public class Dico {
 		Position laPosition2 = new Position(0, 0, 0, 0);
 
 		laPosition2 = dicoTest.get("C");
-		System.out.println("Position de C :" + laPosition.getTexte());
+		System.out.println("Position de C :" + laPosition);
 
 		if (!laPosition.equals(laPosition2))
 			System.out.println("!!! Test Remplace ko !!!");
@@ -150,7 +150,7 @@ public class Dico {
 		while (itr.hasNext()) {
 			snom = itr.next();
 			laPosition = get(snom);
-			System.out.println(snom + laPosition.getTexte());
+			System.out.println(snom + laPosition);
 		}
 	}
 

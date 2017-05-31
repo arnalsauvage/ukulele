@@ -39,7 +39,7 @@ public class GrilleMorceau {
 		// !!!! Non testé !!!!!!
 		pileDeAccords.add(monAccord);
 		Position maPosition = new Position(monAccord);
-		System.out.println(monAccord.chercheTypeAccord(false) + " - " + maPosition.getTexte());
+		System.out.println(monAccord.chercheTypeAccord(false) + " - " + maPosition);
 	}
 
 	// retire le dernier accord de la pile et le renvoie

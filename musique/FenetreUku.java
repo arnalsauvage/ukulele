@@ -15,11 +15,12 @@ public class FenetreUku extends JFrame implements ActionListener {
 		panInterface = new PanneauInterface();
 		panMorceau = new PanneauMorceau();
 		panInterface.setPanneauMorceau(panMorceau);
-		this.setSize(1400, 1250);
+		this.setSize(1000, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.add(panInterface);
-		this.add(panMorceau);
+		this.setContentPane(panMorceau);
+		this.getContentPane().add(panInterface);
+//		pack();
 		this.setVisible(true);
 		addKeyListener(panInterface);
 		// pan.paintComponent(this.getGraphics());

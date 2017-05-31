@@ -3,15 +3,15 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// TODO : familleAccord .lireDepuisFichTexte, comparer 
-// TODO : proposer l'enregistrement dans un fichier texte
-// TODO : proposer la lecture depuis un fichier texte
 // TODO : uniquement les accords fermés
 // TODO : proposer les accords les plus proches
-// TODO : classer en 3 niveaux : ébutants, confirmé et champion
+// TODO : classer en 3 niveaux : débutants, confirmé et champion
 // DONE : débuguer le transpose négatif qui "bloque"
 // DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
 // DONE : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
+// DONE : familleAccord .lireDepuisFichTexte, comparer 
+// DONE : proposer l'enregistrement dans un fichier texte
+// DONE : proposer la lecture depuis un fichier texte
 
 public class Accord {
 
@@ -50,8 +50,12 @@ public class Accord {
 		if (nomFondamentale.length()<nom.length())
 			description = nom.substring(nomFondamentale.length());
 
-		degres = new ArrayList<Integer>();
+		
 		degres = AccordNomFamille.getDegres(description);
+		if ((degres==null))
+			degres = new ArrayList<Integer>();
+		if (degres.isEmpty())
+			degres.add(1);
 //		// Le Top 11 des accords les plus utilisés
 //		int[] powerChord = { 1, 8 };
 //		int[] accordMajeur = { 1, 5, 8 };
@@ -238,6 +242,8 @@ public class Accord {
 	// Testé dans la méthode main de cette classe
 	public boolean compare(Accord AutreAccord) {
 		if (AutreAccord.fondamentale.getValeur() != fondamentale.getValeur())
+			return false;
+		if (AutreAccord.degres==null)
 			return false;
 		if (AutreAccord.degres.size() != degres.size())
 			return false;
