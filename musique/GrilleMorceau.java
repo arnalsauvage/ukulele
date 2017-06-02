@@ -91,8 +91,8 @@ public class GrilleMorceau {
 				monDiagramme.dessine(maPosition, monAccord);
 			}
 		}
-		monDiagramme.setX(monDiagramme.getX() + maTaillex);
-		monDiagramme.setY(y - maTailley / 2);
+		monDiagramme.setX(x);
+		monDiagramme.setY(y -20);
 		monDiagramme.ecritNom("Complexite :" + complexiteGrille() + calculeLesComplexites());
 	}
 
