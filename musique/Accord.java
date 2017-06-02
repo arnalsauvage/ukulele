@@ -3,8 +3,11 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+// TODO : personnaliser la boite de dialogue ouvrir
+// TODO : personnaliser la boite de dialogue enregistrer
 // TODO : uniquement les accords fermés
-// TODO : proposer les accords les plus proches
+// TODO : pour un enchainement d'accords, proposer la position la plus proche de la position précédente
 // TODO : classer en 3 niveaux : débutants, confirmé et champion
 // DONE : débuguer le transpose négatif qui "bloque"
 // DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
