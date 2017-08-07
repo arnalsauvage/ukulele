@@ -62,9 +62,9 @@ public class Position {
 		}
 		difficulte = nbreCordesJouees;
 
-		// Un écartement de + de 3 , c'est dur !
-		if (ecartement > 3)
-			difficulte += ecartement - 3;
+		// Un écartement de + de 2 , c'est plus dur !
+		if (ecartement > 2)
+			difficulte += ecartement - 2;
 
 		// Plus on est loin du début du manche, + ça fait peur !
 		if (minVal > 2 && minVal != Integer.MAX_VALUE)

@@ -46,12 +46,12 @@ public class Diagramme {
 		int fretteDebut = 0;
 		
 		if (maPosition.getPositionHaute()>4)
-			fretteDebut = maPosition.getPositionBasse();
+			fretteDebut = maPosition.getPositionBasse()-1;
 		
-		monDessin.dessinerPoint(0, maPosition.getCorde(1)-fretteDebut+1);
-		monDessin.dessinerPoint(1, maPosition.getCorde(2)-fretteDebut+1);
-		monDessin.dessinerPoint(2, maPosition.getCorde(3)-fretteDebut+1);
-		monDessin.dessinerPoint(3, maPosition.getCorde(4)-fretteDebut+1);
+		monDessin.dessinerPoint(0, maPosition.getCorde(1)-fretteDebut);
+		monDessin.dessinerPoint(1, maPosition.getCorde(2)-fretteDebut);
+		monDessin.dessinerPoint(2, maPosition.getCorde(3)-fretteDebut);
+		monDessin.dessinerPoint(3, maPosition.getCorde(4)-fretteDebut);
 
 		Ukulele monuke;
 		monuke = new Ukulele();
@@ -218,7 +218,7 @@ public class Diagramme {
 		
 		if (nFrette == 0)
 			return;
-		String nom = "" + nFrette;
+		String nom = "" + (nFrette+1);
 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
