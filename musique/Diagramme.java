@@ -218,7 +218,7 @@ public class Diagramme {
 		
 		if (nFrette == 0)
 			return;
-		String nom = "" + (nFrette+1);
+		String nom = "" + (nFrette+1) ;
 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
