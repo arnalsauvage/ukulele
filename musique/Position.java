@@ -50,15 +50,9 @@ public class Position {
 	public int difficulte() {
 		int ecartement;
 		int difficulte;
-		int minVal = Integer.MAX_VALUE; // Case la plus basse jouée
-		int maxVal = Integer.MIN_VALUE; // Case la plus haute jouée
+		int minVal = getPositionBasse(); // Case la plus basse jouée
+		int maxVal = getPositionHaute(); // Case la plus haute jouée
 
-		for (int i = 0; i < valCorde.length; i++) {
-			if (valCorde[i] > 0 && valCorde[i] < minVal)
-				minVal = valCorde[i];
-			if (valCorde[i] > maxVal)
-				maxVal = valCorde[i];
-		}
 		ecartement = maxVal - minVal + 1;
 		// Moins il y a de notes de jouées, plus c'est facile !
 		int nbreCordesJouees = 0;
@@ -73,9 +67,28 @@ public class Position {
 			difficulte += ecartement - 3;
 
 		// Plus on est loin du début du manche, + ça fait peur !
-		if (minVal > 3 && minVal != Integer.MAX_VALUE)
-			difficulte += minVal - 3;
+		if (minVal > 2 && minVal != Integer.MAX_VALUE)
+			difficulte += minVal - 2;
 		return difficulte;
+	}
+
+	public int getPositionBasse() {
+		int minVal = Integer.MAX_VALUE; // Case la plus basse jouée
+		for (int i = 0; i < valCorde.length; i++) {
+			if (valCorde[i] > 0 && valCorde[i] < minVal)
+				minVal = valCorde[i];
+		}
+		return minVal;
+	}
+
+	public int getPositionHaute() {
+		int maxVal = Integer.MIN_VALUE; // Case la plus haute jouée
+
+		for (int i = 0; i < valCorde.length; i++) {
+			if (valCorde[i] > maxVal)
+				maxVal = valCorde[i];
+		}
+		return maxVal;
 	}
 
 	// cherche la position la plus facile pour un accord
@@ -97,22 +110,24 @@ public class Position {
 						for (int d = 0; d < 5; d++) {
 							// On cherche les accords avec ces notes
 							chAccord = monUke.trouveAccordPosition(i + a, i + b, i + c, i + d);
-							// On teste les 4 renversements
-							for (int j = 1; j < 5; j++) {
-								chAccord.renverseAccord();
-								// Si l'accord est l'accord cherché
-								if (chAccord.compare(monAccord)) {
-									// On évalue la difficulté
-									setPosition(i + a, i + b, i + c, i + d);
-									if (difficulte() < bestDifficulte) {
-										bestA = i + a;
-										bestB = i + b;
-										bestC = i + c;
-										bestD = i + d;
-										bestDifficulte = difficulte();
+							if (chAccord != null) {
+								// On teste les 4 renversements
+								for (int j = 1; j < 5; j++) {
+									chAccord.renverseAccord();
+									// Si l'accord est l'accord cherché
+									if (chAccord.equals(monAccord)) {
+										// On évalue la difficulté
+										setPosition(i + a, i + b, i + c, i + d);
+										if (difficulte() < bestDifficulte) {
+											bestA = i + a;
+											bestB = i + b;
+											bestC = i + c;
+											bestD = i + d;
+											bestDifficulte = difficulte();
+										}
 									}
-								}
 
+								}
 							}
 						}
 					}
@@ -128,21 +143,21 @@ public class Position {
 		Accord chAccord = new Accord("C");
 		Ukulele monUke = new Ukulele();
 		Position maPosition;
-		int corde1, corede2, corde3, corde4;
 
 		// On essayera en position frette 0 à 11
 		for (int i = 0; i < 12; i++) {
 			// Espacement de 4 frettes pour toutes les cordes
-			for (int a = -1; a < 5; a++) {
-				for (int b = -1; b < 5; b++) {
-					for (int c = -1; c < 5; c++) {
-						for (int d = -1; d < 5; d++) {
+			for (int corde1 = -1; corde1 < 5; corde1++) {
+				for (int corde2 = -1; corde2 < 5; corde2++) {
+					for (int corde3 = -1; corde3 < 5; corde3++) {
+						for (int corde4 = -1; corde4 < 5; corde4++) {
 
 							// On cherche les accords avec ces notes
-							maPosition = new Position(calculeFretteJouee(i, a), calculeFretteJouee(i, b),
-									calculeFretteJouee(i, b), calculeFretteJouee(i, d));
-							chAccord = monUke.trouveAccordPosition(calculeFretteJouee(i, a), calculeFretteJouee(i, b),
-									calculeFretteJouee(i, b), calculeFretteJouee(i, d));
+							maPosition = new Position(calculeFretteJouee(i, corde1), calculeFretteJouee(i, corde2),
+									calculeFretteJouee(i, corde2), calculeFretteJouee(i, corde4));
+							chAccord = monUke.trouveAccordPosition(calculeFretteJouee(i, corde1),
+									calculeFretteJouee(i, corde2), calculeFretteJouee(i, corde2),
+									calculeFretteJouee(i, corde4));
 							String lesNoms;
 							lesNoms = chAccord.chercheTypeAccord(true);
 
@@ -156,8 +171,9 @@ public class Position {
 									toutesLesPositionsDaccord.put(tabAccords[pchaine], new ArrayList<Position>());
 								ArrayList<Position> maListe = toutesLesPositionsDaccord.get(tabAccords[pchaine]);
 								maListe.add(maPosition);
-								toutesLesPositionsDaccord.put(tabAccords[pchaine],maListe);
-								System.out.println("Ajout de la  "+ maPosition +" dans l'accord"+tabAccords[pchaine]);
+								toutesLesPositionsDaccord.put(tabAccords[pchaine], maListe);
+								System.out
+										.println("Ajout de la  " + maPosition + " dans l'accord" + tabAccords[pchaine]);
 							}
 
 						}

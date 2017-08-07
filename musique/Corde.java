@@ -19,36 +19,37 @@ public class Corde {
 	public Note noteDeLaFrette(int numeroFrette){
 		Note laNote;
 		laNote = new Note(noteRacine.getNom(), noteRacine.getValeur());
+		if ((numeroFrette<0)||(numeroFrette>24))
+			return null;
 		laNote.monter (numeroFrette);
 		return laNote;
 	}
 	
-	// méthode de test de la classe
-	public static void main(String[] args) {
-		// Test du constructeur
-		Corde maCorde = new Corde("A",4);
-		System.out.println("=====Création d'un objet corde (note A4) ok.");
-
-		// Test de la méthode getNoteRacine
-		if (maCorde.getNoteRacine().getNom().equals("A"))
-			System.out.println("getNoteRacine ok : la méthode renvoie 'A'");
-		else
-			System.err.println("getNoteRacine KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
-			
-		Note maNote = new Note("C",4);
-		// Test de la méthode setNoteRacine
-		System.out.println("=====On réinitialise la note de base de la corde à Do 4");
-		maCorde.setNoteRacine(maNote);	
-		if (maCorde.getNoteRacine().getNom().equals("C"))
-			System.out.println("test ok : la méthode renvoie 'C'");
-		else
-			System.err.println("test KO !!!  la méthode renvoie " + maCorde.getNoteRacine().getNom());
-					
-		// test de la méthode NoteDeLaFrette
-		System.out.println("=====Note de la frette 4 en do (mi attendu) : ");
-		if (maCorde.noteDeLaFrette(4).getNom().equals("E"))
-			System.out.println("test ok : la méthode renvoie 'E'");
-		else
-			System.err.println("test KO !!!  la méthode renvoie " + maCorde.noteDeLaFrette(4).getNom());
+	@Override
+	public String toString() {
+		return "Corde [noteRacine=" + noteRacine + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((noteRacine == null) ? 0 : noteRacine.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Corde other = (Corde) obj;
+		if (noteRacine == null) {
+			if (other.noteRacine != null)
+				return false;
+		} else if (!noteRacine.equals(other.noteRacine))
+			return false;
+		return true;
 	}
 }

@@ -127,4 +127,34 @@ public class NoteNom{
 		case 12 : nomDeLaNote = "B"; break;		
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nomDeLaNote == null) ? 0 : nomDeLaNote.hashCode());
+		result = prime * result + valeurDeLaNote;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NoteNom other = (NoteNom) obj;
+		if (nomDeLaNote == null) {
+			if (other.nomDeLaNote != null)
+				return false;
+		} else if (!nomDeLaNote.equals(other.nomDeLaNote))
+			return false;
+		if (valeurDeLaNote != other.valeurDeLaNote)
+			return false;
+		return true;
+	}
+	
+	
 }

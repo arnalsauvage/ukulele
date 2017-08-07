@@ -15,17 +15,19 @@ public class FenetreUku extends JFrame implements ActionListener {
 		panInterface = new PanneauInterface();
 		panMorceau = new PanneauMorceau();
 		panInterface.setPanneauMorceau(panMorceau);
+	}
+
+	public void init() {
 		this.setSize(1000, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(panMorceau);
 		this.getContentPane().add(panInterface);
-//		pack();
+		this.pack();
 		this.setVisible(true);
 		addKeyListener(panInterface);
-		// pan.paintComponent(this.getGraphics());
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -37,6 +39,7 @@ public class FenetreUku extends JFrame implements ActionListener {
 		FenetreUku fen;
 
 		fen = new FenetreUku();
+		fen.init();
 		fen.isCursorSet();
 	}
 }

@@ -10,8 +10,9 @@ import java.util.Hashtable;
 import java.util.Random;
 
 public class Diagramme {
-	Graphics g;
-	int maTaillex , maTailley, x , y;
+	private Graphics g;
+	private int maTaillex , maTailley, x , y;
+	
 	// Constructeur avec un objet graphique, des coordonnées et une taille
 	public Diagramme(Graphics g, int x, int y, int maTaillex, int maTailley){
 		setX (x);
@@ -20,6 +21,7 @@ public class Diagramme {
 		setMaTailley (maTailley);
 		this.g = g;
 	}
+	
 	// Cette méthode permet de randomiser une valeur
 	private int modifieur()
 	{
@@ -34,15 +36,22 @@ public class Diagramme {
 		}
 		return 0;
 	}
+	
 	// dessine la position sur un diagramme : grille, points, croix, nom
 	public void dessine(Position maPosition, Accord monAccord)
 	{
 		Diagramme monDessin = new Diagramme(g, x, y, maTaillex, maTailley);
 		monDessin.dessinerGrilleVierge();
-		monDessin.dessinerPoint(0, maPosition.getCorde(1));
-		monDessin.dessinerPoint(1, maPosition.getCorde(2));
-		monDessin.dessinerPoint(2, maPosition.getCorde(3));
-		monDessin.dessinerPoint(3, maPosition.getCorde(4));
+		
+		int fretteDebut = 0;
+		
+		if (maPosition.getPositionHaute()>4)
+			fretteDebut = maPosition.getPositionBasse();
+		
+		monDessin.dessinerPoint(0, maPosition.getCorde(1)-fretteDebut+1);
+		monDessin.dessinerPoint(1, maPosition.getCorde(2)-fretteDebut+1);
+		monDessin.dessinerPoint(2, maPosition.getCorde(3)-fretteDebut+1);
+		monDessin.dessinerPoint(3, maPosition.getCorde(4)-fretteDebut+1);
 
 		Ukulele monuke;
 		monuke = new Ukulele();
@@ -51,24 +60,24 @@ public class Diagramme {
 
 		accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
 		NomAccord = accordTrouve.chercheTypeAccord(false);
-		//		NomAccord += maPosition.getCorde(1) +" "+ maPosition.getCorde(2)  +" "+  maPosition.getCorde(3)  +" "+  maPosition.getCorde(4);
-		//		monDessin.ecritNom(NomAccord);
-		monDessin.ecritNom(monAccord.nomAbrege());
+		monDessin.ecritNom(NomAccord);
+		this.dessineFretteDebut(fretteDebut);
+		
 	}
 	
-	// dessine la position sur un diagramme : grille, points, croix, nom
-		public void dessine(Position maPosition)
-		{
-			Ukulele monuke;
-			monuke = new Ukulele();
-			Accord accordTrouve;
-
-			accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
-			dessine (maPosition, accordTrouve);
-		}
+//	// dessine la position sur un diagramme : grille, points, croix, nom
+//		public void dessine(Position maPosition)
+//		{
+//			Ukulele monuke;
+//			monuke = new Ukulele();
+//			Accord accordTrouve;
+//
+//			accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
+//			dessine (maPosition, accordTrouve);
+//		}
 		
 	// dessine une grille vierge pour le diagramme
-	public void dessinerGrilleVierge(){
+	private void dessinerGrilleVierge(){
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
@@ -129,6 +138,7 @@ public class Diagramme {
 			}
 		}
 	}
+	
 	// Ecrit le nom de l'accord au dessus de la grille
 	public void ecritNom(String nom){
 		Graphics2D g2 = (Graphics2D) g;
@@ -148,8 +158,9 @@ public class Diagramme {
 		g2.setColor(Color.red);
 		g2.drawString(nom, 1 + x + 10, 1+ y-10);
 	}
+	
 	// Dessine un point sur la corde i à la frette j
-	public void dessinerPoint(int corde, int frette){
+	private void dessinerPoint(int corde, int frette){
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
@@ -169,6 +180,7 @@ public class Diagramme {
 			g2.fillOval(nx + maTaillex/3 * corde - maTaillex/14, ny + maTailley/22 + maTailley/4 * (frette-1), maTaillex/6, maTaillex/6);
 		}
 	}
+	
 	// Dessine une croix pour une corde non jouée
 	private void dessineCroix(Graphics2D g2, int corde)
 	{
@@ -198,6 +210,34 @@ public class Diagramme {
 		// Dessiner une diagonale avec un rectangle 
 		g2.drawLine(monX2 , monY1, monX1, monY2);
 	}
+
+	// Affiche le numéro de la frette de début, si différent de 0
+	private void dessineFretteDebut(int nFrette)
+	{
+		Graphics2D g2 = (Graphics2D) g;
+		
+		if (nFrette == 0)
+			return;
+		String nom = "" + nFrette;
+
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		Font font = new Font("Serif", Font.PLAIN, maTailley);
+
+		Font font24 = font.deriveFont(12.0f);
+		g2.setFont(font24);
+		Hashtable<TextAttribute, Float> attributes = new Hashtable<TextAttribute, Float>();
+		attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);
+		Font font24bold = font24.deriveFont(attributes);
+		g2.setFont(font24bold);
+		g2.setColor(Color.black);
+		g2.drawString(nom, x -8, y+12);
+		g2.drawString(nom, x -6, y+12);
+		g2.setColor(Color.red);
+		g2.drawString(nom, x-7, y+12);
+	}
+	
+	
 	// Getters et Setters
 	public int getMaTaillex() {
 		return maTaillex;

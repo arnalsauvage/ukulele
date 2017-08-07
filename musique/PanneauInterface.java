@@ -12,8 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -21,14 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.FlowLayout;
 import net.miginfocom.swing.MigLayout;
 
 public class PanneauInterface extends JPanel implements KeyListener, ActionListener {
@@ -42,11 +34,11 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 	private JTextArea texteGrille;
 	private int transposition = 0;
 	private JLabel lblTranspose = new JLabel("Transpose");
-	private JComboBox<Integer> comboTranspose;
+	private JComboBox<String> comboTranspose;
 	// Create a file chooser
 	private JButton choixOpenFic;
 	private JButton choixSaveFic;
-	private JFileChooser fileChooser;
+//	private JFileChooser fileChooser;
 
 	GrilleMorceau maGrille;
 
@@ -86,7 +78,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 		lblTranspose.setBounds(171, 47, 152, 27);
 		this.add(lblTranspose, "cell 6 1,alignx left,aligny center");
 
-		comboTranspose = new JComboBox(transposeStrings);
+		comboTranspose = new JComboBox<String>(transposeStrings);
 		comboTranspose.setBounds(246, 47, 126, 29);
 		comboTranspose.setSelectedItem(transposition);
 		this.add(comboTranspose, "cell 8 1,alignx left,aligny center");
@@ -119,7 +111,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 				PanneauInterface.class.getResource("/com/sun/javafx/scene/web/skin/DecreaseIndent_16x16_JFX.png")));
 		this.add(choixSaveFic, "cell 0 3,alignx center,aligny top");
 		choixSaveFic.addActionListener(this);
-		fileChooser = new JFileChooser();
+//		fileChooser = new JFileChooser();
 
 	}
 
@@ -178,9 +170,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			ioe.printStackTrace();
 			retour = 0;
 			// Boîte du message d'erreur
-			JOptionPane jop1, jop2, jop3;
-			jop3 = new JOptionPane();
-			jop3.showMessageDialog(null, "Erreur d'écriture sur le fichier ! \n" + fichier, "Erreur",
+			JOptionPane.showMessageDialog(null, "Erreur d'écriture sur le fichier ! \n" + fichier, "Erreur",
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -221,7 +211,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			choix.setFileFilter(mft);
 			int returnVal = choix.showOpenDialog(this);
 
-			if (returnVal == choix.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = choix.getSelectedFile();
 				// This is where a real application would open the file.
 				texteGrille.setText(lireFichierTexte(file));
@@ -240,7 +230,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			choix.setApproveButtonText("Enregistrer");
 			int returnVal = choix.showOpenDialog(this);
 
-			if (returnVal == choix.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = choix.getSelectedFile();
 				// This is where a real application would open the file.
 				sauveFichierTexte(file);

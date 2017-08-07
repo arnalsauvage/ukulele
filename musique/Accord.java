@@ -3,7 +3,6 @@ package musique;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 // TODO : personnaliser la boite de dialogue ouvrir
 // TODO : personnaliser la boite de dialogue enregistrer
 // TODO : uniquement les accords fermés
@@ -18,13 +17,11 @@ import java.util.Arrays;
 
 public class Accord {
 
-//	static AccordNomFamille dicoAccords = new AccordNomFamille();
-
+	// static AccordNomFamille dicoAccords = new AccordNomFamille();
 	private NoteNom fondamentale; // Fondamentale de l'accord, ex: "C" pour do
-									// majeur 4è octave
+	// majeur 4è octave
 	private ArrayList<Integer> degres; // Degrés des accords, exemple 1,5,8 pour
-										// accord majeur
-	private String nomAccord;
+	// accord majeur
 
 	// Constructeur avec une noteNom fondamentale et des degrés en entrée
 	// Testé dans la méthode main de cette classe
@@ -50,71 +47,14 @@ public class Accord {
 		}
 
 		fondamentale = new NoteNom(nomFondamentale);
-		if (nomFondamentale.length()<nom.length())
+		if (nomFondamentale.length() < nom.length())
 			description = nom.substring(nomFondamentale.length());
 
-		
 		degres = AccordNomFamille.getDegres(description);
-		if ((degres==null))
+		if ((degres == null))
 			degres = new ArrayList<Integer>();
 		if (degres.isEmpty())
 			degres.add(1);
-//		// Le Top 11 des accords les plus utilisés
-//		int[] powerChord = { 1, 8 };
-//		int[] accordMajeur = { 1, 5, 8 };
-//		int[] accordMajeurAugmente = { 1, 5, 9 };
-//		int[] accordMajeur6 = { 1, 5, 8, 10 };
-//		int[] accordMineur = { 1, 4, 8 };
-//		int[] accordMineur6 = { 1, 4, 8, 10 };
-//		int[] accordDiminue = { 1, 4, 7 };
-//		int[] accordDiminue7 = { 1, 4, 7, 10 };
-//		int[] accordMajeur7 = { 1, 5, 8, 11 };
-//		int[] accordMajeur7maj = { 1, 5, 8, 12 };
-//		int[] accordMineur7 = { 1, 4, 8, 11 };
-//		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
-//		int[] accordMajeur9 = { 1, 3, 5, 11 };
-//
-//		switch (description) {
-//		case "":
-//			setDegres(accordMajeur);
-//			break;
-//		case "5":
-//			setDegres(powerChord);
-//			break;
-//		case "aug":
-//			setDegres(accordMajeurAugmente);
-//			break;
-//		case "6":
-//			setDegres(accordMajeur6);
-//			break;
-//		case "m":
-//			setDegres(accordMineur);
-//			break;
-//		case "m6":
-//			setDegres(accordMineur6);
-//			break;
-//		case "dim":
-//			setDegres(accordDiminue);
-//			break;
-//		case "dim7":
-//			setDegres(accordDiminue7);
-//			break;
-//		case "7":
-//			setDegres(accordMajeur7);
-//			break;
-//		case "M7":
-//			setDegres(accordMajeur7maj);
-//			break;
-//		case "m7":
-//			setDegres(accordMineur7);
-//			break;
-//		case "m7-5":
-//			setDegres(accordMineur7quinteB);
-//			break;
-//		case "9":
-//			setDegres(accordMajeur9);
-//			break;
-//		}
 	}
 
 	// Constructeur par copie
@@ -126,16 +66,15 @@ public class Accord {
 	}
 
 	// Méthode d'affichage de l'accord en console pour tests
-	// Testée dans la méthode main de cette classe
-	public void afficheConsole() {
+	public String toString() {
 		Note maNote;
-		System.out.print("Accord : " + this.chercheTypeAccord(true) + " - ");
+		String chaine = "Accord : " + this.chercheTypeAccord(true) + " - ";
 
 		for (int i = 0; i < degres.size(); i++) {
 			maNote = calculeNote(i);
-			System.out.print(maNote.getNom() + maNote.getOctave() + " ");
+			chaine += maNote.getNom() + maNote.getOctave() + " ";
 		}
-		System.out.print("\t");
+		return (chaine + "\t");
 	}
 
 	// On va chercher pour chaque renversement le/les nom(s) de l'accord
@@ -150,8 +89,6 @@ public class Accord {
 				chaine = rajoute(chaine, copieAccord.nomAbrege(), ";");
 			}
 			copieAccord.renverseAccord();
-
-			// copieAccord.afficheConsole();
 			if ((tousLesAccords == false) && (chaine.length() > 0))
 				return chaine;
 		}
@@ -161,68 +98,13 @@ public class Accord {
 	// Cherche le type d'accord pour le renversement en cours
 	// Testée dans la méthode main de cette classe via afficheConsole
 	public String nomAbrege() {
-//		String noms = "";
-
-//		int[] powerChord = { 1, 8 };
-//		int[] accordMajeur = { 1, 5, 8 };
-//		int[] accordMajeurAugmente = { 1, 5, 9 };
-//		int[] accordMajeur6 = { 1, 5, 8, 10 };
-//		int[] accordMineur = { 1, 4, 8 };
-//		int[] accordMineur6 = { 1, 4, 8, 10 };
-//		int[] accordDiminue = { 1, 4, 7 };
-//		int[] accordDiminue7 = { 1, 4, 7, 10 };
-//		int[] accordMajeur7 = { 1, 5, 8, 11 };
-//		int[] accordMajeur7maj = { 1, 5, 8, 12 };
-//		int[] accordMineur7 = { 1, 4, 8, 11 };
-//		int[] accordMineur7quinteB = { 1, 4, 7, 11 };
-//		int[] accordMajeur9 = { 1, 3, 5, 11 };
 
 		Accord maCopie = new Accord(this);
 		maCopie.simplifie();
-		String noms ="";
+		String noms = "";
 		if (!AccordNomFamille.getNomFamille(maCopie.degres).equals("ko"))
 			noms = rajoute(noms, fondamentale.getNom() + AccordNomFamille.getNomFamille(maCopie.degres), ";");
 		return noms;
-//		if (maCopie.egale(accordMineur7quinteB)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "m7-5", ";");
-//		}
-//		if (maCopie.egale(powerChord)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "5", ";");
-//		}
-//		if (maCopie.egale(accordMajeur)) {
-//			noms = rajoute(noms, fondamentale.getNom(), ";");
-//		}
-//		if (maCopie.egale(accordMajeurAugmente)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "aug", ";");
-//		}
-//		if (maCopie.egale(accordMajeur6)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "6", ";");
-//		}
-//		if (maCopie.egale(accordMineur)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "m", ";");
-//		}
-//		if (maCopie.egale(accordMineur6)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "m6", ";");
-//		}
-//		if (maCopie.egale(accordMajeur7)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "7", ";");
-//		}
-//		if (maCopie.egale(accordMajeur7maj)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "M7", ";");
-//		}
-//		if (maCopie.egale(accordMineur7)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "m7", ";");
-//		}
-//		if (maCopie.egale(accordDiminue)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "dim", ";");
-//		}
-//		if (maCopie.egale(accordDiminue7)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "dim7", ";");
-//		}
-//		if (maCopie.egale(accordMajeur9)) {
-//			noms = rajoute(noms, fondamentale.getNom() + "9", ";");
-//		}
-//		return (noms);
 	}
 
 	// Le renversement monte la base actuelle de 1 octave :
@@ -239,21 +121,6 @@ public class Accord {
 	// Testé dans la méthode main de la classe AccordsTest
 	public void transpose(int ecart) {
 		fondamentale.monter(ecart);
-	}
-
-	// compare l'accord en cours avec un autre accord
-	// Testé dans la méthode main de cette classe
-	public boolean compare(Accord AutreAccord) {
-		if (AutreAccord.fondamentale.getValeur() != fondamentale.getValeur())
-			return false;
-		if (AutreAccord.degres==null)
-			return false;
-		if (AutreAccord.degres.size() != degres.size())
-			return false;
-		for (int i = 0; i < AutreAccord.degres.size() - 1; i++)
-			if (AutreAccord.degres.get(i) != degres.get(i))
-				return false;
-		return true;
 	}
 
 	// Simplifie un accord en supprimant les notes présentes à deux octaves
@@ -274,7 +141,7 @@ public class Accord {
 
 	// compare les degrés de l'accord avec un tableau de degrés
 	// Testé dans la méthode main de cette classe
-	private boolean egale(int[] tabDegres) {
+	public boolean equals(int[] tabDegres) {
 		// Si différence de taille : on renvoie faux
 		if (tabDegres.length != degres.size())
 			return false;
@@ -286,12 +153,45 @@ public class Accord {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((degres == null) ? 0 : degres.hashCode());
+		result = prime * result + ((fondamentale == null) ? 0 : fondamentale.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Accord other = (Accord) obj;
+		
+		if (fondamentale == null) {
+			if (other.fondamentale != null)
+				return false;
+		} else if (!fondamentale.equals(other.fondamentale))
+			return false;
+		
+		if (degres == null) {
+			if (other.degres != null)
+				return false;
+		} else if (!this.degres.equals(other.degres))
+			return false;
+		return true;
+	}
+
 	// initialise les degres avec un tableau d'entiers
 	// Testé via les appels aux constructeurs
-	private void setDegres(int[] tabDegres) {
+	public void setDegres(int[] tabDegres) {
 		// on vide notre tableau
 		degres.clear();
-		// On trie le tableau passé en paramètres
+		// On trie le tableau passé en paramètre
 		Arrays.sort(tabDegres);
 		// On ajoute tous les composants un par un
 		for (int i = 0; i < tabDegres.length; i++)
@@ -302,13 +202,8 @@ public class Accord {
 
 	// initialise les degres avec ceux d'un autre accord
 	// Testé via le constructeur par copie d'accord
-	private void setDegres(Accord autreAccord) {
-		// on vide notre tableau
-		degres.clear();
-		// On recopie les degres de l'autre accord
-		for (int i = 0; i < autreAccord.degres.size(); i++) {
-			degres.add(autreAccord.degres.get(i));
-		}
+	public void setDegres(Accord autreAccord) {
+		degres = (ArrayList<Integer>) autreAccord.degres.clone();
 	}
 
 	// Tasse le tableau des degrés : si l'élément 0 > 1, on baisse tout
@@ -332,88 +227,12 @@ public class Accord {
 	}
 
 	// Méthode qui renvoie la nième note de l'accord selon la fondamentale et
-	// les degrés
-	// testé via la méthode afficheConsole
+	// les degrés, testé via la méthode toString
 	private Note calculeNote(int rang) {
 		Note maNote;
 		// La première note est la fondamentale
 		maNote = new Note(fondamentale.getNom(), 4);
 		maNote.monter(degres.get(rang) - 1);
 		return maNote;
-	}
-
-	// Test des méthodes "
-	public static void main(String[] args) {
-		int[] accordMajeur = { 1, 5, 8, 13 };
-		Accord monAccord;
-		NoteNom maNote;
-
-		AccordNomFamille.creeCatalogueAccords();
-		
-		maNote = new NoteNom("C");
-		monAccord = new Accord(maNote, accordMajeur);
-		
-		// CalculeNote est validé par l'appel de AfficheConsole
-
-		
-		
-		// Teste la méthode egale
-		System.out.println("///// Test de la méthode egale /////");
-		if (monAccord.egale(accordMajeur))
-			System.out.println("Fonction egale ok pour un accord identique");
-		else
-			System.err.println("Fonction egale KO pour un accord identique !!!");
-
-		int[] autreAccord = { 1, 5, 8 };
-		if (!monAccord.egale(autreAccord))
-			System.out.println("Fonction egale ok pour un accord avec un nombre différent de degrés");
-		else
-			System.err.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
-
-		int[] accord3 = { 1, 3, 8, 13 };
-		if (!monAccord.egale(accord3))
-			System.out.println("Fonction egale ok pour un accord avec un degré différent");
-		else
-			System.err.println("Fonction egale KO pour un accord avec un degré différent !!!");
-
-		// Teste méthode compare
-		Accord mon2emeAccord = new Accord(maNote, accordMajeur);
-		System.out.println("\n///// Test de la méthode compare /////");
-		if (monAccord.compare(mon2emeAccord))
-			System.out.println("Fonction egale ok pour un accord identique");
-		else
-			System.err.println("Fonction egale KO pour un accord identique !!!");
-
-		mon2emeAccord = new Accord("C");
-		if (!monAccord.compare(mon2emeAccord))
-			System.out.println("Fonction egale ok pour un accord avec un nombre différent de degrés");
-		else
-			System.err.println("Fonction egale KO pour un accord avec un nombre différent de degrés !!!");
-
-		mon2emeAccord = new Accord(maNote, accord3);
-		if (!monAccord.compare(mon2emeAccord))
-			System.out.println("Fonction egale ok pour un accord avec un degré différent");
-		else
-			System.err.println("Fonction egale KO pour un accord avec un degré différent !!!");
-
-		// Teste le simplifie accord
-		System.out.println("\n///// Test de la méthode simplifie /////");
-		System.out.print("Simplifie C : do mi sol do :");
-		monAccord = new Accord(maNote, accordMajeur);
-		monAccord.simplifie();
-		monAccord.afficheConsole();
-		System.out.print("\nSimplifie C : do mi sol :");
-		monAccord.simplifie();
-		monAccord.afficheConsole();
-
-		// teste le constructeur par accord et la méthode compare par accord
-		System.out.println("\n\n///// Test du constructeur par accord et de la méthode compare /////");
-		Accord mon3emeAccord = new Accord(mon2emeAccord);
-		System.out.print("Copie de accord2 vers Accord3 :");
-		mon3emeAccord.afficheConsole();
-		if (mon3emeAccord.compare(mon2emeAccord))
-			System.out.println("\nFonction compare ok pour un accord égal");
-		else
-			System.err.println("\nFonction egale KO pour un accord égal !!!");
 	}
 }

@@ -20,23 +20,33 @@ public class Ukulele {
 	public Accord trouveAccordPosition(int a, int b, int c, int d) {
 		Note maNote;
 		int[] tabDegres;
-
+//		System.out.println("a : " + a + " b: " + b + " c:" + c + " d:" + d);
+		
+		if (a==-1 && b==-1 && c==-1 && d==-1)
+			return null;
+		
 		// On met les 4 notes dans un tableau pour les trier
 		ArrayList<Integer> notesJouees = new ArrayList<Integer>(4);
-
-		notesJouees.add(corde1.noteDeLaFrette(a).getValeur());
-		notesJouees.add(corde2.noteDeLaFrette(b).getValeur());
-		notesJouees.add(corde3.noteDeLaFrette(c).getValeur());
-		notesJouees.add(corde4.noteDeLaFrette(d).getValeur());
+		if (a >= 0)
+			notesJouees.add(corde1.noteDeLaFrette(a).getValeur());
+		if (b >= 0)
+			notesJouees.add(corde2.noteDeLaFrette(b).getValeur());
+		if (c >= 0)
+			notesJouees.add(corde3.noteDeLaFrette(c).getValeur());
+		if (d >= 0)
+			notesJouees.add(corde4.noteDeLaFrette(d).getValeur());
 
 		notesJouees.sort(null);
+		if (notesJouees.size() <2)
+			return null;
+		
 
 		// On supprime les doublons s'il y en a, du plus aigu vers le plus grave
-		if (notesJouees.get(3) == notesJouees.get(2))
+		if (notesJouees.size()> 3 && notesJouees.get(3) == notesJouees.get(2))
 			notesJouees.remove(3);
-		if (notesJouees.get(2) == notesJouees.get(1))
+		if (notesJouees.size()> 2 &&notesJouees.get(2) == notesJouees.get(1))
 			notesJouees.remove(2);
-		if (notesJouees.get(1) == notesJouees.get(0))
+		if (notesJouees.size()> 1 &&notesJouees.get(1) == notesJouees.get(0))
 			notesJouees.remove(1);
 
 		// On construit le tableau des degrés avec les notes qu'il reste

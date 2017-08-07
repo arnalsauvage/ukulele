@@ -141,7 +141,7 @@ public class GrilleMorceau {
 	// Affiche les accords du morceau en mode texte
 	public void afficheTexte() {
 		for (Accord monAccord : pileDeAccords) {
-			monAccord.afficheConsole();
+			System.out.println(monAccord);
 		}
 	}
 
