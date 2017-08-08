@@ -8,7 +8,7 @@ import musique.Accord;
 import musique.AccordNomFamille;
 import musique.NoteNom;
 
-public class TestAccord {
+public class AccordTest {
 
 	@Test
 	public void testEquals() {

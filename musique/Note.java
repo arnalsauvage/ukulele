@@ -16,7 +16,6 @@ public class Note{
 		nom = new NoteNom("C");
 		setValeur(valeurNote);
 	}
-
 	
 	public int getValeur() {
 		return (nom.getValeur()+12*octave);
@@ -141,7 +140,4 @@ public class Note{
 			return false;
 		return true;
 	}
-	
-	
-	
 }

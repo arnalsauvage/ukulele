@@ -1,9 +1,11 @@
-package musique;
+package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+
+import musique.GrilleMorceau;
 
 public class PanneauMorceau extends JPanel  {
 	private static final long serialVersionUID = 1L;

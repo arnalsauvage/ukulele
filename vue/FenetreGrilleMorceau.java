@@ -1,16 +1,18 @@
-package musique;
+package vue;
 
 import javax.swing.JFrame;
+
+import musique.AccordNomFamille;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FenetreUku extends JFrame implements ActionListener {
+public class FenetreGrilleMorceau extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private PanneauInterface panInterface;
 	private PanneauMorceau panMorceau;
 
-	public FenetreUku() {
+	public FenetreGrilleMorceau() {
 		this.setTitle("Accords ukulélé");
 		panInterface = new PanneauInterface();
 		panMorceau = new PanneauMorceau();
@@ -36,9 +38,9 @@ public class FenetreUku extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		AccordNomFamille.creeCatalogueAccords();
-		FenetreUku fen;
+		FenetreGrilleMorceau fen;
 
-		fen = new FenetreUku();
+		fen = new FenetreGrilleMorceau();
 		fen.init();
 		fen.isCursorSet();
 	}

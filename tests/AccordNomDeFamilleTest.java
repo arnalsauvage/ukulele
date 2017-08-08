@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import musique.AccordNomFamille;
 
-public class TestAccordNomDeFamille {
+public class AccordNomDeFamilleTest {
 
-	public TestAccordNomDeFamille(){
+	public AccordNomDeFamilleTest(){
 		AccordNomFamille.creeCatalogueAccords();
 	}
 	

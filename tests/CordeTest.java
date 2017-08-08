@@ -7,7 +7,7 @@ import org.junit.Test;
 import musique.Corde;
 import musique.Note;
 
-public class TestCorde {
+public class CordeTest {
 
 	@Test
 	public void testCorde() {

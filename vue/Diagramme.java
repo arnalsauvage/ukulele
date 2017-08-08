@@ -1,4 +1,4 @@
-package musique;
+package vue;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -8,6 +8,10 @@ import java.awt.RenderingHints;
 import java.awt.font.TextAttribute;
 import java.util.Hashtable;
 import java.util.Random;
+
+import musique.Accord;
+import musique.Position;
+import musique.Ukulele;
 
 public class Diagramme {
 	private Graphics g;

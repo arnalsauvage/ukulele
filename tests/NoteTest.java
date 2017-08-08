@@ -1,4 +1,6 @@
-package musique;
+package tests;
+
+import musique.Note;
 
 public class NoteTest {
 	public static void testeMajNote(Note maNote, String nomDeLaNote)

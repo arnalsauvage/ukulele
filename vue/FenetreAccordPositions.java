@@ -1,8 +1,10 @@
-package musique;
+package vue;
 
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+import musique.AccordNomFamille;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

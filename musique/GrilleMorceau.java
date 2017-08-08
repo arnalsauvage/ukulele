@@ -3,6 +3,10 @@ package musique;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import vue.Diagramme;
+
+// TODO : ajouter la gestion des différents séparateurs : /
+
 public class GrilleMorceau {
 	ArrayList<Accord> pileDeAccords;
 	Dico monDico;
@@ -36,10 +40,10 @@ public class GrilleMorceau {
 
 	// Ajoute un accord dans le morceau
 	public void ajouteAccord(Accord monAccord) {
-		// !!!! Non testé !!!!!!
 		pileDeAccords.add(monAccord);
-		Position maPosition = new Position(monAccord);
-		System.out.println(monAccord.chercheTypeAccord(false) + " - " + maPosition);
+		// Position maPosition = new Position(monAccord);
+		// System.out.println(monAccord.chercheTypeAccord(false)+" -
+		// "+maPosition);
 	}
 
 	// retire le dernier accord de la pile et le renvoie
@@ -50,55 +54,14 @@ public class GrilleMorceau {
 		return monAccord;
 	}
 
-	// Pour afficher le morceau en mode graphique, précisant le nombre de
-	// accords par ligne
-	public void AfficheMorceau(Graphics g, int accordsParLigne, int x, int y, int maTaillex, int maTailley) {
-		Accord monAccord = new Accord("C");
-		Position maPosition = new Position(0, 0, 0, 0);
-		int col = 0;
-		int ligne = 0;
-		String maChaine = new String();
-		Diagramme monDiagramme = new Diagramme(g, x, y, maTaillex, maTailley);
-		g.clearRect(x, y - maTailley / 2, accordsParLigne * (maTaillex + maTaillex / 2),
-				(1 + taillePaquet() / accordsParLigne) * (maTailley + maTailley / 2)); // Pour
-																						// chaque
-																						// accord
-																						// de
-																						// la
-																						// grille,
-																						// on
-																						// affiche
-																						// sur
-																						// n
-																						// accords
-																						// par
-																						// ligne
-
-		for (int i = 0; i < pileDeAccords.size(); i++) {
-
-			// Calcule ligne / colonne d'affichage
-			col = i % accordsParLigne;
-			ligne = i / accordsParLigne;
-
-			// On pioche l'accord
-			monAccord = pileDeAccords.get(i);
-			monDiagramme = new Diagramme(g, x + col * (maTaillex + maTaillex / 2),
-					y + ligne * (maTailley + maTailley / 2), maTaillex, maTailley);
-			maChaine = monAccord.chercheTypeAccord(false);
-			maPosition = monDico.get(maChaine);
-
-			if (maPosition != null) {
-				monDiagramme.dessine(maPosition, monAccord);
-			}
-		}
-		monDiagramme.setX(x);
-		monDiagramme.setY(y -20);
-		monDiagramme.ecritNom("Complexite :" + complexiteGrille() + calculeLesComplexites());
+	// Renvoie la taille de la pile : nombre d'accords dans le morceau
+	public int taillePaquet() {
+		return pileDeAccords.size();
 	}
 
 	// Prépare une chaine affichant la complexité du morceau dans les 12
 	// transpositions
-	public String calculeLesComplexites() {
+	public String calculeLes12Complexites() {
 		String ChaineRetour = "";
 		for (int i = 1; i < 12; i++) {
 			this.transpose(1);
@@ -106,11 +69,6 @@ public class GrilleMorceau {
 		}
 		this.transpose(1);
 		return ChaineRetour;
-	}
-
-	// Renvoie la taille de la pile : nombre d'accords dans le morceau
-	public int taillePaquet() {
-		return pileDeAccords.size();
 	}
 
 	// Donne un score de compexite du morceau = somme de la difficulte des
@@ -136,6 +94,41 @@ public class GrilleMorceau {
 		for (Accord monAccord : pileDeAccords) {
 			monAccord.transpose(demiTons);
 		}
+	}
+
+	// Pour afficher le morceau en mode graphique,
+	// précisant le nombre d'accords par ligne
+	public void AfficheMorceau(Graphics g, int accordsParLigne, int x, int y, int maTaillex, int maTailley) {
+		Accord monAccord = new Accord("C");
+		Position maPosition = new Position(0, 0, 0, 0);
+		int col = 0;
+		int ligne = 0;
+		String maChaine = new String();
+		Diagramme monDiagramme = new Diagramme(g, x, y, maTaillex, maTailley);
+		g.clearRect(x, y - maTailley / 2, accordsParLigne * (maTaillex + maTaillex / 2),
+				(1 + taillePaquet() / accordsParLigne) * (maTailley + maTailley / 2));
+
+		// Pour chaque accord de la grille, on affiche sur n accords par ligne
+		for (int i = 0; i < pileDeAccords.size(); i++) {
+
+			// Calcule ligne / colonne d'affichage
+			col = i % accordsParLigne;
+			ligne = i / accordsParLigne;
+
+			// On pioche l'accord
+			monAccord = pileDeAccords.get(i);
+			monDiagramme = new Diagramme(g, x + col * (maTaillex + maTaillex / 2),
+					y + ligne * (maTailley + maTailley / 2), maTaillex, maTailley);
+			maChaine = monAccord.chercheTypeAccord(false);
+			maPosition = monDico.get(maChaine);
+
+			if (maPosition != null) {
+				monDiagramme.dessine(maPosition, monAccord);
+			}
+		}
+		monDiagramme.setX(x);
+		monDiagramme.setY(y - 20);
+		monDiagramme.ecritNom("Complexite :" + complexiteGrille() + calculeLes12Complexites());
 	}
 
 	// Affiche les accords du morceau en mode texte

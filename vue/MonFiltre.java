@@ -1,4 +1,4 @@
-package musique;
+package vue;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
 

@@ -9,7 +9,7 @@ public class Ukulele {
 	Corde corde4;
 
 	// Constructeur par défaut
-	Ukulele() {
+	public Ukulele() {
 		corde1 = new Corde("G", 4);
 		corde2 = new Corde("C", 4);
 		corde3 = new Corde("E", 4);
@@ -39,7 +39,6 @@ public class Ukulele {
 		notesJouees.sort(null);
 		if (notesJouees.size() <2)
 			return null;
-		
 
 		// On supprime les doublons s'il y en a, du plus aigu vers le plus grave
 		if (notesJouees.size()> 3 && notesJouees.get(3) == notesJouees.get(2))
