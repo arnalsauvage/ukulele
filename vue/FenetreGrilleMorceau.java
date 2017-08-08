@@ -1,5 +1,6 @@
 package vue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import musique.AccordNomFamille;
@@ -13,7 +14,8 @@ public class FenetreGrilleMorceau extends JFrame implements ActionListener {
 	private PanneauMorceau panMorceau;
 
 	public FenetreGrilleMorceau() {
-		this.setTitle("Accords ukulélé");
+		this.setTitle("Grilles ukulélé");
+		setIconImage(new ImageIcon(this.getClass().getResource("ukulele.png")).getImage());
 		panInterface = new PanneauInterface();
 		panMorceau = new PanneauMorceau();
 		panInterface.setPanneauMorceau(panMorceau);

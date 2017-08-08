@@ -16,11 +16,9 @@ public class PanneauMorceau extends JPanel  {
 
 	public PanneauMorceau() {
 		maGrille = new GrilleMorceau();
-
 	}
 
 	public void paintComponent(Graphics g) {
-
 		// Point de départ du dessin
 		int x = 10;
 		int y = 300;
