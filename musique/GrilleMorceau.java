@@ -1,8 +1,11 @@
 package musique;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
-
 import vue.Diagramme;
 
 // TODO : ajouter la gestion des différents séparateurs : /
@@ -126,9 +129,23 @@ public class GrilleMorceau {
 				monDiagramme.dessine(maPosition, monAccord);
 			}
 		}
-		monDiagramme.setX(x);
-		monDiagramme.setY(y - 20);
-		monDiagramme.ecritNom("Complexite :" + complexiteGrille() + calculeLes12Complexites());
+
+		String chaineComplexite = "Complexite : " + complexiteGrille() + ". Alternatives en transposant : " + calculeLes12Complexites();
+		
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
+		// Définition de la police
+		Font font = new Font("Serif", Font.PLAIN, maTailley);
+		Font font24 = font.deriveFont(16.0f);
+		g2.setFont(font24);
+			
+		// Ecriture en rouge et en noir
+		g2.setColor(Color.red);
+		g2.drawString(chaineComplexite, x, y-35);
+		g2.setColor(Color.black);
+		g2.drawString(chaineComplexite, 1 + x, y-36);
 	}
 
 	// Affiche les accords du morceau en mode texte

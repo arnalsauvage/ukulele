@@ -3,11 +3,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import musique.AccordNomFamille;
 
-import java.awt.Point;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class FenetreAccordPositions extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -20,11 +20,12 @@ public class FenetreAccordPositions extends JFrame implements ActionListener {
 	}
 
 	public void init() {
-		this.setSize(800, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(monPanPosition);
-		this.pack();
+		this.setSize(800, 600);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2);
 		this.setVisible(true);
 		addKeyListener(monPanPosition);
 	}

@@ -204,6 +204,9 @@ public class Position {
 		Accord accordTrouve;
 		String NomAccord;
 
+		accordTrouve = monuke.trouveAccordPosition(1,0,1,3);
+		NomAccord = accordTrouve.chercheTypeAccord(true);
+		
 		AccordNomFamille.creeCatalogueAccords();
 
 		for (int a = 0; a < 5; a++)

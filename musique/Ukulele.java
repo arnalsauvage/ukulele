@@ -15,6 +15,9 @@ public class Ukulele {
 		corde3 = new Corde("E", 4);
 		corde4 = new Corde("A", 4);
 	}
+	public Accord trouveAccordPosition(Position position) {
+		return trouveAccordPosition(position.getCorde(1),position.getCorde(2),position.getCorde(3),position.getCorde(4));
+	}
 
 	// Cette méthode va chercher l'accord correspondant à une position
 	public Accord trouveAccordPosition(int a, int b, int c, int d) {
@@ -41,9 +44,9 @@ public class Ukulele {
 			return null;
 
 		// On supprime les doublons s'il y en a, du plus aigu vers le plus grave
-		if (notesJouees.size()> 3 && notesJouees.get(3) == notesJouees.get(2))
+		if (notesJouees.size()> 3 && (notesJouees.get(3) == notesJouees.get(2)))
 			notesJouees.remove(3);
-		if (notesJouees.size()> 2 &&notesJouees.get(2) == notesJouees.get(1))
+		if (notesJouees.size()> 2 && (notesJouees.get(2) == notesJouees.get(1)))
 			notesJouees.remove(2);
 		if (notesJouees.size()> 1 &&notesJouees.get(1) == notesJouees.get(0))
 			notesJouees.remove(1);

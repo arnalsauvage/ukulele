@@ -129,9 +129,9 @@ public class Accord {
 	public void simplifie() {
 		// Comme les degrés sont classés par odre croissant, on part du haut
 		for (int i = degres.size() - 1; i > 0; i--)
-			// Si on trouve en dessous un de gré à l'octave inférieur,
+			// Si on trouve en dessous un degré valant même note,
 			for (int j = i - 1; j >= 0; j--) {
-				if (degres.get(i) == 12 + degres.get(j)) {
+				if (degres.get(i) == degres.get(j)%12) {
 					// On supprime le degré en cours
 					degres.remove(i--);
 					j = i - 1;

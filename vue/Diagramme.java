@@ -2,6 +2,7 @@ package vue;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -147,20 +148,30 @@ public class Diagramme {
 	public void ecritNom(String nom){
 		Graphics2D g2 = (Graphics2D) g;
 
+		
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		Font font = new Font("Serif", Font.PLAIN, maTailley);
 
-		Font font24 = font.deriveFont(18.0f);
+		// Définition de la police
+		Font font = new Font("Serif", Font.PLAIN, maTailley);
+		Font font24 = font.deriveFont(18.0f*maTaillex/50);
 		g2.setFont(font24);
 		Hashtable<TextAttribute, Float> attributes = new Hashtable<TextAttribute, Float>();
 		attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);
 		Font font24bold = font24.deriveFont(attributes);
-		g2.setFont(font24bold);
+		g2.setFont(font24bold);	
+		
+		// Pour centrer le texte
+		FontMetrics metrics = g.getFontMetrics(font24);
+		int posx, posy;
+		posx = this.x + (this.maTaillex - metrics.stringWidth(nom))/2;
+		posy = this.y - metrics.getAscent()/4;
+		
+		// Ecriture en rouge et en noir
 		g2.setColor(Color.black);
-		g2.drawString(nom, x + 10, y-10);
+		g2.drawString(nom, posx, posy);
 		g2.setColor(Color.red);
-		g2.drawString(nom, 1 + x + 10, 1+ y-10);
+		g2.drawString(nom, 1 + posx, 1+posy);
 	}
 	
 	// Dessine un point sur la corde i à la frette j

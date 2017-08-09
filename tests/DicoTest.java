@@ -3,7 +3,6 @@ package tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import musique.AccordNomFamille;
-import musique.Corde;
 import musique.Dico;
 import musique.Position;
 
