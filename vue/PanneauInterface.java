@@ -157,7 +157,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 
 			// on marque dans le fichier ou plutot dans le BufferedWriter qui
 			// sert comme un tampon(stream)
-			output.write(titreGrille.getText() + "\n");
+			output.write(titreGrille.getText() + "\r\n");
 			// on peut utiliser plusieurs fois methode write
 			output.write(texteGrille.getText());
 

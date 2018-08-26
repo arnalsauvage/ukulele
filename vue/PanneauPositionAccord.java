@@ -42,17 +42,17 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		y = 50;
 
 		// Largeur et hauteur d'un diagramme
-		maTaillex = 240;
-		maTailley = 300;
+		maTaillex = 120;
+		maTailley = 200;
 
 		this.setSize(maTaillex, maTailley);
 		monCanvas = new Canvas();
-		monCanvas.setSize(maTaillex + x, (int) (maTailley * 1.33));
-		monCanvas.setBounds(x, y, maTaillex + x,(int) (maTailley * 1.33));
+		monCanvas.setSize( (int) (maTaillex *1.2), (int) (maTailley * 1));
+		monCanvas.setBounds(x, y, (int) (maTaillex *1.2) + x,(int) (maTailley * 1.1) + y);
 		monCanvas.addMouseListener(this);
 		texte = new JTextArea();
-		this.add(texte);
 		this.add(monCanvas);
+		this.add(texte);
 		monUke = new Ukulele();
 	}
 
@@ -62,7 +62,7 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		monCanvas.getGraphics().setColor(Color.white);
 		monCanvas.getGraphics().clearRect(0,0, monCanvas.getWidth(), monCanvas.getHeight());
 		if (monDiagramme == null)
-			monDiagramme = new Diagramme(monCanvas.getGraphics(), x, y + maTailley/4 , maTaillex,  (int) ( maTailley * 0.75));
+			monDiagramme = new Diagramme(monCanvas.getGraphics(), x, y  , maTaillex,  (int) ( maTailley ));
 		monDiagramme.dessine(maPosition, monAccord);
 		// System.out.println("Coucou !");
 	}
@@ -75,18 +75,26 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		mony = e.getY();
 
 		// Clic dans le diagramme
-//		if ((monx >= monCanvas.getX()) && (monx <= (monCanvas.getX() + monCanvas.getWidth()))) {
-//			if ((mony >= monCanvas.getY()) && (mony <= (monCanvas.getY() + monCanvas.getHeight()))){
+		if ((monx >= 0) && (monx <=  monCanvas.getWidth())) {
+			if ((mony >= 0) && (mony <= monCanvas.getHeight())){
 			int maColonne = 1 + (monx - x) / (maTaillex / 4);
 			int maLigne =  (mony - y + maTailley / 10) / (maTailley / 5);
 
 			maPosition.setCorde(maColonne, maLigne);
 			monDiagramme.dessine(maPosition, monAccord);
-			texte.setText("Monx : " + monx + " mony : " + mony + " col :" + maColonne + " ligne : " + maLigne);
 			monAccord = monUke.trouveAccordPosition(maPosition);
 			texte.setText("Accord(s) : " + monAccord.chercheTypeAccord(true));
+
+			// texte.setText("Monx : " + monx + " mony : " + mony + " col :" + maColonne + " ligne : " + maLigne);
+
 			repaint();
-//			}
+			}
+		}
+//		else
+//		{
+//			texte.setText("Monx : " + monx + " mony : " + mony );
+//			repaint();
+//	
 //		}
 	}
 
