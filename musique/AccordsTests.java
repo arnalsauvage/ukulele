@@ -40,51 +40,51 @@ public class AccordsTests {
 		maNote = new NoteNom("C");
 		System.out.println("\n"+ message);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(1);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();	
+		System.out.println(monAccord);	
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		maNote.monter(1);
 		monAccord = new Accord(maNote,tabNotes);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		System.out.println("");
 	}
 	
 	public static void testeConstructeurString(){
 		System.out.println("\n5)Test du constructeur par une chaine : Cm7 C#dim7 Cb7 C5 Fm7-5"); 
 		Accord monAccord = new Accord("C");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("D");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("E");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("F");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		 monAccord = new Accord("Cm7");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("C#dim7");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("Cb7");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("C5");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord = new Accord("Fm75b");
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 	}
 
 	public static void testeRenverseAccords()
@@ -100,13 +100,13 @@ public class AccordsTests {
 		Accord monAccord;
 		maNote = new NoteNom("A");
 		monAccord = new Accord(maNote, accordMineur7);
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord.renverseAccord();
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord.renverseAccord();
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		monAccord.renverseAccord();
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 	}
 
 	public static void testeChercheTypeAccord(){
@@ -125,7 +125,7 @@ public class AccordsTests {
 		System.out.print("Résultat de chercheTypeAccord sur accord(Am7) : " );
 		Accord monAccord = new Accord("C6");
 		System.out.println( monAccord.chercheTypeAccord(true));
-		monAccord.afficheConsole();
+		System.out.println(monAccord);
 		
 	}
 	

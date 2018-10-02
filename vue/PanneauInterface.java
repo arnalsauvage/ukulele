@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import musique.GrilleMorceau;
+import musique.PanneauMorceau;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;

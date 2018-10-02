@@ -42,63 +42,63 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		y = 50;
 
 		// Largeur et hauteur d'un diagramme
-<<<<<<< Upstream, based on branch 'master' of https://github.com/arnalsauvage/ukulele.git
-		maTaillex = 120;
-		maTailley = 200;
-
-		this.setSize(maTaillex, maTailley);
-		monCanvas = new Canvas();
-		monCanvas.setSize( (int) (maTaillex *1.2), (int) (maTailley * 1));
-		monCanvas.setBounds(x, y, (int) (maTaillex *1.2) + x,(int) (maTailley * 1.1) + y);
-		monCanvas.addMouseListener(this);
-		texte = new JTextArea();
-		this.add(monCanvas);
-		this.add(texte);
-		monUke = new Ukulele();
-	}
-
-	public void paintComponent(Graphics g) {
-
-		// On efface la zone de dessin
-		monCanvas.getGraphics().setColor(Color.white);
-		monCanvas.getGraphics().clearRect(0,0, monCanvas.getWidth(), monCanvas.getHeight());
-		if (monDiagramme == null)
-			monDiagramme = new Diagramme(monCanvas.getGraphics(), x, y  , maTaillex,  (int) ( maTailley ));
-		monDiagramme.dessine(maPosition, monAccord);
-		// System.out.println("Coucou !");
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		int monx, mony;
-		monx = e.getX();
-		mony = e.getY();
-
-		// Clic dans le diagramme
-		if ((monx >= 0) && (monx <=  monCanvas.getWidth())) {
-			if ((mony >= 0) && (mony <= monCanvas.getHeight())){
-			int maColonne = 1 + (monx - x) / (maTaillex / 4);
-			int maLigne =  (mony - y + maTailley / 10) / (maTailley / 5);
-
-			maPosition.setCorde(maColonne, maLigne);
-			monDiagramme.dessine(maPosition, monAccord);
-			monAccord = monUke.trouveAccordPosition(maPosition);
-			texte.setText("Accord(s) : " + monAccord.chercheTypeAccord(true));
-
-			// texte.setText("Monx : " + monx + " mony : " + mony + " col :" + maColonne + " ligne : " + maLigne);
-
-			repaint();
-			}
-		}
-//		else
-//		{
-//			texte.setText("Monx : " + monx + " mony : " + mony );
+//<<<<<<< Upstream, based on branch 'master' of https://github.com/arnalsauvage/ukulele.git
+//		maTaillex = 120;
+//		maTailley = 200;
+//
+//		this.setSize(maTaillex, maTailley);
+//		monCanvas = new Canvas();
+//		monCanvas.setSize( (int) (maTaillex *1.2), (int) (maTailley * 1));
+//		monCanvas.setBounds(x, y, (int) (maTaillex *1.2) + x,(int) (maTailley * 1.1) + y);
+//		monCanvas.addMouseListener(this);
+//		texte = new JTextArea();
+//		this.add(monCanvas);
+//		this.add(texte);
+//		monUke = new Ukulele();
+//	}
+//
+//	public void paintComponent(Graphics g) {
+//
+//		// On efface la zone de dessin
+//		monCanvas.getGraphics().setColor(Color.white);
+//		monCanvas.getGraphics().clearRect(0,0, monCanvas.getWidth(), monCanvas.getHeight());
+//		if (monDiagramme == null)
+//			monDiagramme = new Diagramme(monCanvas.getGraphics(), x, y  , maTaillex,  (int) ( maTailley ));
+//		monDiagramme.dessine(maPosition, monAccord);
+//		// System.out.println("Coucou !");
+//	}
+//
+//	@Override
+//	public void mouseReleased(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		int monx, mony;
+//		monx = e.getX();
+//		mony = e.getY();
+//
+//		// Clic dans le diagramme
+//		if ((monx >= 0) && (monx <=  monCanvas.getWidth())) {
+//			if ((mony >= 0) && (mony <= monCanvas.getHeight())){
+//			int maColonne = 1 + (monx - x) / (maTaillex / 4);
+//			int maLigne =  (mony - y + maTailley / 10) / (maTailley / 5);
+//
+//			maPosition.setCorde(maColonne, maLigne);
+//			monDiagramme.dessine(maPosition, monAccord);
+//			monAccord = monUke.trouveAccordPosition(maPosition);
+//			texte.setText("Accord(s) : " + monAccord.chercheTypeAccord(true));
+//
+//			// texte.setText("Monx : " + monx + " mony : " + mony + " col :" + maColonne + " ligne : " + maLigne);
+//
 //			repaint();
-//	
+//			}
 //		}
-	}
-=======
+////		else
+////		{
+////			texte.setText("Monx : " + monx + " mony : " + mony );
+////			repaint();
+////	
+////		}
+//	}
+//=======
 		maTaillex = 240;
 		maTailley = 300;
 
@@ -152,7 +152,7 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		}
 	}
  */
->>>>>>> f19b1c0 Correction du bug : le nom de l'accord est parfois changé par un autre équivalent. Exemple : Am7 est affiché C6
+//>>>>>>> f19b1c0 Correction du bug : le nom de l'accord est parfois changé par un autre équivalent. Exemple : Am7 est affiché C6
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
