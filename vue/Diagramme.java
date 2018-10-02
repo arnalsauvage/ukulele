@@ -43,7 +43,31 @@ public class Diagramme {
 	}
 	
 	// dessine la position sur un diagramme : grille, points, croix, nom
+	public void dessine(Position maPosition)
+	{
+		Ukulele monuke;
+		monuke = new Ukulele();
+		Accord accordTrouve;
+		String NomAccord;
+
+		accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
+		NomAccord = accordTrouve.chercheTypeAccord(false);
+		
+		dessine(maPosition, NomAccord);
+		
+	}
+	
+	// dessine la position sur un diagramme : grille, points, croix, nom
 	public void dessine(Position maPosition, Accord monAccord)
+	{
+			String nomAccord = monAccord.chercheTypeAccord(false);
+		
+		dessine(maPosition, nomAccord);
+		
+	}
+	
+	// dessine la position sur un diagramme : grille, points, croix, nom
+	public void dessine(Position maPosition, String monAccord)
 	{
 		Diagramme monDessin = new Diagramme(g, x, y, maTaillex, maTailley);
 		monDessin.dessinerGrilleVierge();
@@ -57,15 +81,8 @@ public class Diagramme {
 		monDessin.dessinerPoint(1, maPosition.getCorde(2)-fretteDebut);
 		monDessin.dessinerPoint(2, maPosition.getCorde(3)-fretteDebut);
 		monDessin.dessinerPoint(3, maPosition.getCorde(4)-fretteDebut);
+		monDessin.ecritNom(monAccord);
 
-		Ukulele monuke;
-		monuke = new Ukulele();
-		Accord accordTrouve;
-		String NomAccord;
-
-		accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
-		NomAccord = accordTrouve.chercheTypeAccord(false);
-		monDessin.ecritNom(NomAccord);
 		this.dessineFretteDebut(fretteDebut);
 		
 	}

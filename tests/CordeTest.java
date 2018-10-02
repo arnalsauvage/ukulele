@@ -10,24 +10,30 @@ import musique.Note;
 public class CordeTest {
 
 	@Test
-	public void testCorde() {
+	public void testeNoteDeLaFrette() {
+		// Test du constructeur
+				Corde maCorde = new Corde("A",4);
+				// test de la méthode NoteDeLaFrette
+				assertEquals("C#",maCorde.noteDeLaFrette(4).getNom());
+	}
+	
+	@Test
+	public void testeGetNoteRacine() {
 		// Test du constructeur
 				Corde maCorde = new Corde("A",4);
 				// Test de getNoteRacine
 				assertEquals("A",maCorde.getNoteRacine().getNom());
-
-				
-				Note maNote = new Note("C",4);
+	}
+	
+	@Test
+	public void testeSetNoteRacine() {
+		Corde maCorde = new Corde("A",4);
+		Note maNote = new Note("C",4);
 				// Test de la méthode setNoteRacine
 				maCorde.setNoteRacine(maNote);	
 				assertEquals("C",maCorde.getNoteRacine().getNom());
-							
-				// test de la méthode NoteDeLaFrette
-				assertEquals("E",maCorde.noteDeLaFrette(4).getNom());
 	}
-
 	
-
 	@Test
 	public void testNoteDeLaFrette() {
 		// Test du constructeur

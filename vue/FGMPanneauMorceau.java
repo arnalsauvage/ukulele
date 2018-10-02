@@ -7,14 +7,14 @@ import javax.swing.JPanel;
 
 import musique.GrilleMorceau;
 
-public class PanneauMorceau extends JPanel  {
+public class FGMPanneauMorceau extends JPanel  {
 	private static final long serialVersionUID = 1L;
 
 	String texteAtraiter = "";
 	GrilleMorceau maGrille;
 	int transposition;
 
-	public PanneauMorceau() {
+	public FGMPanneauMorceau() {
 		maGrille = new GrilleMorceau();
 	}
 
@@ -35,6 +35,7 @@ public class PanneauMorceau extends JPanel  {
 	}
 
 	private void testeGrille(Graphics g, int accordsParLigne, int x, int y, int maTaillex, int maTailley) {
+		// On supprime les doubles espaces dans le texte des accords
 		while (texteAtraiter.contains("  "))
 			texteAtraiter = (texteAtraiter.replaceAll("  ", " "));
 		if (texteAtraiter.length() > 2) {

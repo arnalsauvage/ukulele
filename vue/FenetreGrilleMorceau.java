@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 
 public class FenetreGrilleMorceau extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	private PanneauInterface panInterface;
-	private PanneauMorceau panMorceau;
+	private FGMPanneauInterface panInterface;
+	private FGMPanneauMorceau panMorceau;
 
 	public FenetreGrilleMorceau() {
 		this.setTitle("Grilles ukulélé");
 		setIconImage(new ImageIcon(this.getClass().getResource("ukulele.png")).getImage());
-		panInterface = new PanneauInterface();
-		panMorceau = new PanneauMorceau();
+		panInterface = new FGMPanneauInterface();
+		panMorceau = new FGMPanneauMorceau();
 		panInterface.setPanneauMorceau(panMorceau);
 	}
 

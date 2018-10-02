@@ -29,6 +29,7 @@ public class Corde {
 	public String toString() {
 		return "Corde [noteRacine=" + noteRacine + "]";
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -36,6 +37,7 @@ public class Corde {
 		result = prime * result + ((noteRacine == null) ? 0 : noteRacine.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

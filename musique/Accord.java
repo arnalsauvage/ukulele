@@ -6,10 +6,10 @@ import java.util.Arrays;
 // TODO : personnaliser la boite de dialogue ouvrir
 // TODO : personnaliser la boite de dialogue enregistrer
 // TODO : uniquement les accords fermés
-// TODO : pour un enchainement d'accords, proposer la position la plus proche de la position précédente
+// TODO : pour un enchaînement d'accords, proposer la position la plus proche de la position précédente
 // TODO : classer en 3 niveaux : débutants, confirmé et champion
 // DONE : débuguer le transpose négatif qui "bloque"
-// DONE : gérer dans la fenetre les retours de chariot tab et autres séparateurs
+// DONE : gérer dans la fenêtre les retours de chariot tab et autres séparateurs
 // DONE : créer une Classe familleAccord qui fait correspondre un tableau de degrés et un nom
 // DONE : familleAccord .lireDepuisFichTexte, comparer 
 // DONE : proposer l'enregistrement dans un fichier texte

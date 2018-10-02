@@ -8,7 +8,7 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import vue.Diagramme;
 
-// TODO : ajouter la gestion des différents séparateurs : /
+// TODO : ajouter la gestion du séparateur : /
 
 public class GrilleMorceau {
 	ArrayList<Accord> pileDeAccords;
@@ -25,12 +25,12 @@ public class GrilleMorceau {
 	// à ajouter au morceau ex : "C Am7 F G7"
 	public void ajouteAccords(String sAccords) {
 		Accord monAccord;
-		// On explose les sous chaines dans un tableau
-		String[] tabAccords = sAccords.split(" ");
+		// On explose les sous-chaînes dans un tableau
+		String[] tabAccords = sAccords.split("(/|\\s)");
 		// On ajoute chaque élément du tableau au morceau
 		for (int i = 0; i < tabAccords.length; i++) {
 			monAccord = new Accord(tabAccords[i]);
-			ajouteAccord(monAccord);
+			ajouteAccord(monAccord );
 		}
 	}
 
@@ -42,11 +42,16 @@ public class GrilleMorceau {
 	}
 
 	// Ajoute un accord dans le morceau
-	public void ajouteAccord(Accord monAccord) {
+	public void ajouteAccord(Accord monAccord, String stringSeparateur) {
 		pileDeAccords.add(monAccord);
 		// Position maPosition = new Position(monAccord);
 		// System.out.println(monAccord.chercheTypeAccord(false)+" -
 		// "+maPosition);
+	}	
+	
+	// Ajoute un accord dans le morceau
+	public void ajouteAccord(Accord monAccord) {
+		pileDeAccords.add(monAccord);
 	}
 
 	// retire le dernier accord de la pile et le renvoie
@@ -74,10 +79,10 @@ public class GrilleMorceau {
 		return ChaineRetour;
 	}
 
-	// Donne un score de compexite du morceau = somme de la difficulte des
+	// Donne un score de complexité du morceau = somme de la difficulté des
 	// positions
 	// TODO : étudier les différences de position d'un accord à l'autre
-	// pourréduire la
+	// pour réduire la
 	// complexité : F ==> Dm complexité 2 + 3 = 5 à corriger en 3, car juste un
 	// doigt à poser
 	public int complexiteGrille() {
@@ -113,10 +118,10 @@ public class GrilleMorceau {
 
 		// Pour chaque accord de la grille, on affiche sur n accords par ligne
 		for (int i = 0; i < pileDeAccords.size(); i++) {
-
+			
 			// Calcule ligne / colonne d'affichage
-			col = i % accordsParLigne;
-			ligne = i / accordsParLigne;
+			col = (i) % accordsParLigne;
+			ligne = (i) / accordsParLigne;
 
 			// On pioche l'accord
 			monAccord = pileDeAccords.get(i);
@@ -126,7 +131,7 @@ public class GrilleMorceau {
 			maPosition = monDico.get(maChaine);
 
 			if (maPosition != null) {
-				monDiagramme.dessine(maPosition, monAccord);
+				monDiagramme.dessine(maPosition, maChaine);
 			}
 		}
 
