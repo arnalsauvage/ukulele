@@ -21,6 +21,7 @@ public class AccordTest {
 
 		// Teste la méthode egale pour un accord identique à 4 degrés
 		assertTrue(monAccord.equals(accordMajeur7));
+		
 	}
 
 	@Test
@@ -181,6 +182,13 @@ public class AccordTest {
 		maNote.monter(1);
 		monAccord = new Accord(maNote,tabNotes);
 		assertEquals("Accord : C - C4 E4 G4 C5 \t", monAccord.toString());
+		
+		maNote = new NoteNom("Bb");
+		int[] tabNotes2 = {1,5,8};
+		monAccord = new Accord(maNote,tabNotes2);
+		System.out.println("Nom abrege : "+ monAccord.nomAbrege() + monAccord);
+		assertEquals("Bb", monAccord.nomAbrege());
+		
 	}
 	
 	@Test
@@ -264,4 +272,26 @@ public class AccordTest {
 		monAccord = new Accord(maNote,tabNotes);
 		assertEquals("Accord : Cm7;D#6 - C4 D#4 G4 A#4 \t", monAccord.toString());
 	}
+	
+	@Test
+	public void testTransposition()
+	{
+		Accord monAccord = new Accord ("Cm7");
+
+		// Tests transposer
+		teste_Transposer(monAccord,2,"Dm7");
+	}
+	
+	public static void teste_Transposer(Accord monAccord, int transpose, String resultat)
+	{
+		Accord autreAccord = new Accord(monAccord);
+		autreAccord.transpose(transpose);
+		
+		if (autreAccord.nomAbrege().equals(resultat))
+			System.out.println(resultat + " trouvé");
+		else
+			System.err.println("Erreur pour trouver " + monAccord.nomAbrege() + " ==>" + resultat  +  " résultat trouvé : " + autreAccord.nomAbrege());
+		assertEquals(resultat, autreAccord.nomAbrege());
+	}
+
 }

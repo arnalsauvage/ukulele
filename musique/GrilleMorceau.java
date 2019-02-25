@@ -56,9 +56,11 @@ public class GrilleMorceau {
 
 	// retire le dernier accord de la pile et le renvoie
 	public Accord tireAccord() {
-		Accord monAccord;
-		monAccord = (Accord) pileDeAccords.get(pileDeAccords.size() - 1);
-		pileDeAccords.remove(pileDeAccords.size() - 1);
+		Accord monAccord = null;
+		if (pileDeAccords.size()>0){
+			monAccord = (Accord) pileDeAccords.get(pileDeAccords.size() - 1);
+			pileDeAccords.remove(pileDeAccords.size() - 1);
+		}
 		return monAccord;
 	}
 
@@ -99,6 +101,8 @@ public class GrilleMorceau {
 	// Transpose le morceau du nombre de demi-tons
 	public void transpose(int demiTons) {
 		// Position maPosition;
+		if (demiTons ==0)
+			return;
 		for (Accord monAccord : pileDeAccords) {
 			monAccord.transpose(demiTons);
 		}
@@ -125,9 +129,9 @@ public class GrilleMorceau {
 
 			// On pioche l'accord
 			monAccord = pileDeAccords.get(i);
-			monDiagramme = new Diagramme(g, x + col * (maTaillex + maTaillex / 2),
+			monDiagramme = new Diagramme(g, x + 20 + col * (maTaillex + maTaillex / 2),
 					y + ligne * (maTailley + maTailley / 2), maTaillex, maTailley);
-			maChaine = monAccord.chercheTypeAccord(false);
+			maChaine = monAccord.nomAbrege();
 			maPosition = monDico.get(maChaine);
 
 			if (maPosition != null) {
@@ -155,9 +159,17 @@ public class GrilleMorceau {
 
 	// Affiche les accords du morceau en mode texte
 	public void afficheTexte() {
+			System.out.println("[pileDeAccords=" + this.toString() + "]");
+	}
+	
+
+	@Override
+	public String toString() {
+		String maChaine = "";
 		for (Accord monAccord : pileDeAccords) {
-			System.out.println(monAccord);
+			maChaine += monAccord.nomAbrege() + " ";
 		}
+		return maChaine;
 	}
 
 	// Procédure de test

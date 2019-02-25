@@ -33,8 +33,8 @@ public class NoteNom{
 
 	public boolean setNom(String nomDeLaNote) {
 		if ((nomDeLaNote.length()>0)&&(nomDeLaNote.length()<3)){
-			nomDeLaNote = nomDeLaNote.toUpperCase();
-			if (nomDeLaNote.matches("[A-G]#?B?")){
+			//nomDeLaNote = nomDeLaNote.toUpperCase();
+			if (nomDeLaNote.matches("[A-G]#?b?")){
 				this.nomDeLaNote = nomDeLaNote;
 				this.simplifie();
 				this.calculeNumero();
@@ -46,11 +46,11 @@ public class NoteNom{
 
 	private void simplifie()
 	{
-		if (nomDeLaNote.equals("CB"))
+		if (nomDeLaNote.equals("Cb"))
 			nomDeLaNote = "B";
 		if (nomDeLaNote.equals("B#"))
 			nomDeLaNote = "C";
-		if (nomDeLaNote.equals("FB"))
+		if (nomDeLaNote.equals("Fb"))
 			nomDeLaNote = "E";
 		if (nomDeLaNote.equals("E#"))
 			nomDeLaNote = "F";		
@@ -58,15 +58,15 @@ public class NoteNom{
 
 	public void ecritEnDiese()
 	{
-		if (nomDeLaNote.equals("DB"))
+		if (nomDeLaNote.equals("Db"))
 			nomDeLaNote = "C#";
-		if (nomDeLaNote.equals("EB"))
+		if (nomDeLaNote.equals("Eb"))
 			nomDeLaNote = "D#";
-		if (nomDeLaNote.equals("GB"))
+		if (nomDeLaNote.equals("Gb"))
 			nomDeLaNote = "F#";
-		if (nomDeLaNote.equals("AB"))
+		if (nomDeLaNote.equals("Ab"))
 			nomDeLaNote = "G#";	
-		if (nomDeLaNote.equals("BB"))
+		if (nomDeLaNote.equals("Bb"))
 			nomDeLaNote = "A#";	
 	}
 
@@ -91,25 +91,30 @@ public class NoteNom{
 
 	private void calculeNumero()
 	{
-		ecritEnDiese();
+		// ecritEnDiese();
 		switch (nomDeLaNote)
 		{
 		case "C" : valeurDeLaNote = 1;break; 
 		case "C#" : valeurDeLaNote = 2;break; 
+		case "Db" : valeurDeLaNote = 2;break; 
 		case "D" : valeurDeLaNote = 3; break;
 		case "D#" : valeurDeLaNote = 4; break;
+		case "Eb" : valeurDeLaNote = 4; break;
 		case "E" : valeurDeLaNote = 5; break;
 		case "F" : valeurDeLaNote = 6; break;
 		case "F#" : valeurDeLaNote = 7; break;
+		case "Gb" : valeurDeLaNote = 7; break;
 		case "G" : valeurDeLaNote = 8; break;
 		case "G#" : valeurDeLaNote = 9; break;
+		case "Ab" : valeurDeLaNote = 9; break;
 		case "A" : valeurDeLaNote = 10; break;
 		case "A#" : valeurDeLaNote = 11; break;
+		case "Bb" : valeurDeLaNote = 11; break;
 		case "B" : valeurDeLaNote = 12; break;
 		}
 	}
 
-	void calculeNom()
+	private void calculeNom()
 	{
 		switch (valeurDeLaNote)
 		{

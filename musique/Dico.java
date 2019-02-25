@@ -11,8 +11,14 @@ public class Dico {
 		leDico = new Hashtable<String, Position>();
 	}
 
-	// Renvoie la position pour un acord décrit par une chaîne
+	// Renvoie la position pour un accord décrit par une chaîne
 	public Position get(String cle) {
+		// Si la clé est donnée avec un bémol, on la convertit en dièse
+		if ((cle.length()>1)&&(cle.substring(1, 2).equals("b"))){
+			NoteNom maNote = new NoteNom(cle);
+			maNote.ecritEnDiese();
+			cle = maNote.getNom();
+		}
 		if (leDico.containsKey(cle))
 			return leDico.get(cle);
 		else

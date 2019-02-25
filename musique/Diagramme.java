@@ -14,7 +14,7 @@ public class Diagramme {
 	int maTaillex , maTailley, x , y;
 	// Constructeur avec un objet graphique, des coordonnées et une taille
 	public Diagramme(Graphics g, int x, int y, int maTaillex, int maTailley){
-		setX (x);
+		setX (x + 5);
 		setY (y);
 		setMaTaillex (maTaillex);
 		setMaTailley (maTailley);
@@ -44,15 +44,6 @@ public class Diagramme {
 		monDessin.dessinerPoint(2, maPosition.getCorde(3));
 		monDessin.dessinerPoint(3, maPosition.getCorde(4));
 
-		Ukulele monuke;
-		monuke = new Ukulele();
-		Accord accordTrouve;
-		String NomAccord;
-
-		accordTrouve = monuke.trouveAccordPosition(maPosition.getCorde(1), maPosition.getCorde(2), maPosition.getCorde(3), maPosition.getCorde(4));
-		NomAccord = accordTrouve.chercheTypeAccord(false);
-		//		NomAccord += maPosition.getCorde(1) +" "+ maPosition.getCorde(2)  +" "+  maPosition.getCorde(3)  +" "+  maPosition.getCorde(4);
-		//		monDessin.ecritNom(NomAccord);
 		monDessin.ecritNom(monAccord.nomAbrege());
 	}
 	

@@ -186,7 +186,7 @@ public class Accord {
 		return true;
 	}
 
-	// initialise les degres avec un tableau d'entiers
+	// initialise les degrés avec un tableau d'entiers
 	// Testé via les appels aux constructeurs
 	public void setDegres(int[] tabDegres) {
 		// on vide notre tableau
@@ -200,7 +200,7 @@ public class Accord {
 		tasse();
 	}
 
-	// initialise les degres avec ceux d'un autre accord
+	// initialise les degrés avec ceux d'un autre accord
 	// Testé via le constructeur par copie d'accord
 	public void setDegres(Accord autreAccord) {
 		degres = (ArrayList<Integer>) autreAccord.degres.clone();

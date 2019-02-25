@@ -161,8 +161,8 @@ public class AccordNomFamille {
 		Integer[] accordDiminue7 = { 1, 4, 7, 10 };
 		Integer[] accordMajeur7 = { 1, 5, 8, 11 };
 		Integer[] accordMajeur7maj = { 1, 5, 8, 12 };
-		Integer[] accordMineur7 = { 1, 4, 8, 11 };
-		Integer[] accordMineur7min = { 1, 4, 8, 10 };
+		Integer[] accordMineur7 = { 1, 4, 8, 12 };
+		Integer[] accordMineur7min = { 1, 4, 8, 11 };
 		Integer[] accordMineur7quinteB = { 1, 4, 7, 11 };
 		Integer[] accordMajeur79 = { 1, 3, 5, 11 };
 		Integer[] accordMajeur9 = { 1, 5, 8, 15 };
@@ -192,9 +192,11 @@ public class AccordNomFamille {
 		monAccord.AjouteAlaListe();
 		monAccord = new AccordNomFamille("dim7", accordDiminue7);
 		monAccord.AjouteAlaListe();
-		monAccord = new AccordNomFamille("m7", accordMineur7);
+		monAccord = new AccordNomFamille("m7", accordMineur7min);
 		monAccord.AjouteAlaListe();
-		monAccord = new AccordNomFamille("°", accordMineur7min);
+		monAccord = new AccordNomFamille("°", accordMineur7);
+		monAccord.AjouteAlaListe();
+		monAccord = new AccordNomFamille("mmaj7", accordMineur7);
 		monAccord.AjouteAlaListe();
 		monAccord = new AccordNomFamille("m75b", accordMineur7quinteB);
 		monAccord.AjouteAlaListe();
