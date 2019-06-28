@@ -215,7 +215,10 @@ public class AccordTest {
 		maNote.monter(2);
 		monAccord = new Accord(maNote,tabNotes);
 		assertEquals("Accord : Am - A4 C5 E5 A5 \t", monAccord.toString());
-		maNote.monter(2);
+		maNote.monter(1);
+		monAccord = new Accord(maNote,tabNotes);
+		assertEquals("Accord : A#m - A#4 C#5 F5 A#5 \t", monAccord.toString());
+		maNote.monter(1);
 		monAccord = new Accord(maNote,tabNotes);
 		assertEquals("Accord : Bm - B4 D5 F#5 B5 \t", monAccord.toString());
 		maNote.monter(1);

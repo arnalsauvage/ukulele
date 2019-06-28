@@ -15,9 +15,9 @@ public class Dico {
 	public Position get(String cle) {
 		// Si la clé est donnée avec un bémol, on la convertit en dièse
 		if ((cle.length()>1)&&(cle.substring(1, 2).equals("b"))){
-			NoteNom maNote = new NoteNom(cle);
-			maNote.ecritEnDiese();
-			cle = maNote.getNom();
+			//NoteNom maNote = new NoteNom(cle);
+			Accord monAccord =new Accord(cle);
+			cle = monAccord.ecritEnDiese();
 		}
 		if (leDico.containsKey(cle))
 			return leDico.get(cle);
@@ -67,6 +67,7 @@ public class Dico {
 		Accord monAccord = new Accord("Am7");
 		String machaine = new String();
 		
+		// Douze premières frettes de base
 		for (int i = 0; i < 11; i++) {
 			for (int a = 0; a < 6; a++) {
 				for (int b = 0; b < 6; b++) {

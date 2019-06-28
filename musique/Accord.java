@@ -36,10 +36,11 @@ public class Accord {
 	public Accord(String nom) {
 		String nomFondamentale;
 		String description = "";
-
+		// Accord décrit avec un seul caractère, 
 		if (nom.length() == 1)
 			nomFondamentale = nom.substring(0, 1).toUpperCase();
 		else {
+			// On gère les # et les bémols (b)
 			if (nom.substring(1, 2).equals("#") || nom.substring(1, 2).toUpperCase().equals("B"))
 				nomFondamentale = nom.substring(0, 2);
 			else
@@ -234,5 +235,16 @@ public class Accord {
 		maNote = new Note(fondamentale.getNom(), 4);
 		maNote.monter(degres.get(rang) - 1);
 		return maNote;
+	}
+	
+	public String ecritEnDiese(){
+		Accord maCopie = new Accord(this);
+		maCopie.simplifie();
+		String noms = "";
+		NoteNom mafondamentale = this.fondamentale;
+		mafondamentale.ecritEnDiese();
+		if (!AccordNomFamille.getNomFamille(maCopie.degres).equals("ko"))
+			noms = rajoute(noms, mafondamentale.getNom() + AccordNomFamille.getNomFamille(maCopie.degres), ";");
+		return noms;	
 	}
 }
