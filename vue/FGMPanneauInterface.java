@@ -33,7 +33,6 @@ public class FGMPanneauInterface extends JPanel implements KeyListener, ActionLi
 	private JButton boutonAfficheGrille;
 	private JButton btnTransposePlus;
 	private JButton btnTransposeMoins;
-	private JButton btnAfficheFenetrePositionAccord;
 	private JButton boutonAfficheChordFinder;
 	private JTextArea titreGrille;
 	private JTextArea texteGrille;
@@ -79,9 +78,6 @@ public class FGMPanneauInterface extends JPanel implements KeyListener, ActionLi
 		btnTransposePlus.setBounds(64, 47, 50, 29);
 		btnTransposePlus.addActionListener(this);
 		this.add(btnTransposePlus, "cell 2 1,alignx left,aligny top");
-
-		btnAfficheFenetrePositionAccord = new JButton("Atelier Accord");
-		this.add(btnAfficheFenetrePositionAccord);
 		
 		lblTranspose.setBounds(171, 47, 152, 27);
 		this.add(lblTranspose, "cell 6 1,alignx left,aligny center");
@@ -209,9 +205,10 @@ public class FGMPanneauInterface extends JPanel implements KeyListener, ActionLi
 		if (evt.getSource() == btnTransposeMoins)
 			transposition--;
 		
-		if (evt.getSource() == btnAfficheFenetrePositionAccord){
+		if (evt.getSource() == boutonAfficheChordFinder){
 			FenetreAccordPositions fenAP = new FenetreAccordPositions();
 			fenAP.init();
+			fenAP.setVisible(true);
 		}
 
 		if (transposition > 11)
