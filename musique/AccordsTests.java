@@ -14,7 +14,7 @@ public class AccordsTests {
 		testeTypeAccord(accordMajeur,  "1)Affichage accords majeurs");
 		testeTypeAccord(accordMajeur7, "2)Affichage accords majeurs 7è");
 		testeTypeAccord(accordMineur,  "3)Affichage accords mineurs");
-//		testeTypeAccord(accordMineur7, "4)Affichage accords mineurs 7è");
+		testeTypeAccord(accordMineur7, "4)Affichage accords mineurs 7è");
 		testeTypeAccord(accordMajeur9, "4)Affichage accords majeurs 9");
 		testeConstructeurString();
 		System.out.println();

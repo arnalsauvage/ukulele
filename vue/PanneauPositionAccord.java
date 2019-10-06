@@ -105,7 +105,7 @@ public class PanneauPositionAccord extends JPanel implements KeyListener, Action
 		this.setSize(maTaillex, maTailley);
 		monCanvas = new Canvas();
 		monCanvas.setSize(maTaillex + x, (int) (maTailley * 1.33));
-		monCanvas.setBounds(x, y, maTaillex + x,(int) (maTailley * 1.33));
+		monCanvas.setBounds(x, y, (int) (maTaillex * 1.33 + x),(int) (maTailley * 1.33));
 		monCanvas.addMouseListener(this);
 		texte = new JTextArea();
 		this.add(texte);

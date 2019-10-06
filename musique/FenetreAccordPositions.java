@@ -18,7 +18,7 @@ public class FenetreAccordPositions extends JFrame implements ActionListener {
 		panInterface = new PanneauInterface();
 		panMorceau = new PanneauMorceau();
 		panInterface.setPanneauMorceau(panMorceau);
-		this.setSize(1000, 800);
+		this.setSize(400, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(panMorceau);

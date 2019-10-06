@@ -34,6 +34,7 @@ public class FGMPanneauInterface extends JPanel implements KeyListener, ActionLi
 	private JButton btnTransposePlus;
 	private JButton btnTransposeMoins;
 	private JButton btnAfficheFenetrePositionAccord;
+	private JButton boutonAfficheChordFinder;
 	private JTextArea titreGrille;
 	private JTextArea texteGrille;
 	private int transposition = 0;
@@ -112,6 +113,13 @@ public class FGMPanneauInterface extends JPanel implements KeyListener, ActionLi
 		boutonAfficheGrille.addActionListener(this);
 		this.add(boutonAfficheGrille, "cell 8 3,alignx right,aligny center");
 
+		// Bouton Chord Finder
+		boutonAfficheChordFinder = new JButton("Accord sur mesure");
+		boutonAfficheChordFinder.setToolTipText("Choisissez un accord en posant vos doigts sur le uke");
+		boutonAfficheChordFinder.setBounds(823, 114, 95, 36);
+		boutonAfficheChordFinder.addActionListener(this);
+		this.add(boutonAfficheChordFinder, "cell 2 3,alignx right,aligny center");
+		
 		choixSaveFic = new JButton("Enregistrer...");
 		choixSaveFic.setBounds(723, 65, 95, 36);
 		choixSaveFic.setIcon(new ImageIcon(

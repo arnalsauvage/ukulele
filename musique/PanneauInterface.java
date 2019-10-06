@@ -12,24 +12,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.FlowLayout;
 import net.miginfocom.swing.MigLayout;
+import vue.FenetreAccordPositions;
 
 public class PanneauInterface extends JPanel implements KeyListener, ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +38,8 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 	// Create a file chooser
 	private JButton choixOpenFic;
 	private JButton choixSaveFic;
+	private JButton boutonAfficheChordFinder;
+	@SuppressWarnings("unused")
 	private JFileChooser fileChooser;
 
 	GrilleMorceau maGrille;
@@ -67,21 +61,16 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 		// Hello Dolly
 		// Gestion du combo "transpose"
 		String[] transposeStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
-		setLayout(new MigLayout("", "[317px][5px][35px][5px][1px][5px][50px][5px][187.00px]", "[22px][][112px][25px]"));
+	 setLayout(new MigLayout("", "[317px][5px][35px][5px][1px][5px][50px][5px][187.00px]", "[22px][][112px][25px]"));
 
 		titreGrille = new JTextArea("Hello Dolly", 1, 80);
 		titreGrille.setBounds(12, 11, 684, 29);
 		this.add(titreGrille, "cell 0 0 9 1,alignx center,aligny top");
 
-		btnTransposeMoins = new JButton("-");
-		btnTransposeMoins.setBounds(119, 47, 42, 29);
-		btnTransposeMoins.addActionListener(this);
-		this.add(btnTransposeMoins, "cell 0 1,alignx right,aligny top");
-
 		btnTransposePlus = new JButton("+");
 		btnTransposePlus.setBounds(64, 47, 50, 29);
 		btnTransposePlus.addActionListener(this);
-		this.add(btnTransposePlus, "cell 2 1,alignx left,aligny top");
+		this.add(btnTransposePlus, "flowx,cell 2 1,alignx left,aligny top");
 
 		lblTranspose.setBounds(171, 47, 152, 27);
 		this.add(lblTranspose, "cell 6 1,alignx left,aligny center");
@@ -107,20 +96,32 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 		this.add(choixOpenFic, "flowx,cell 0 3,alignx left,aligny top");
 		choixOpenFic.addActionListener(this);
 
-		// Affichage des boutons
-		boutonAfficheGrille = new JButton("Affiche grille");
-		boutonAfficheGrille.setBounds(723, 114, 95, 36);
-		boutonAfficheGrille.addActionListener(this);
-		this.add(boutonAfficheGrille, "cell 8 3,alignx right,aligny center");
-
 		choixSaveFic = new JButton("Enregistrer...");
-		choixSaveFic.setBounds(723, 65, 95, 36);
+		choixSaveFic.setBounds(723, 65, 95, 42);
 		choixSaveFic.setIcon(new ImageIcon(
 				PanneauInterface.class.getResource("/com/sun/javafx/scene/web/skin/DecreaseIndent_16x16_JFX.png")));
 		this.add(choixSaveFic, "cell 0 3,alignx center,aligny top");
 		choixSaveFic.addActionListener(this);
 		fileChooser = new JFileChooser();
-
+				
+				// Bouton Chord Finder
+				boutonAfficheChordFinder = new JButton("Accord sur mesure");
+				boutonAfficheChordFinder.setToolTipText("Choisissez un accord en posant vos doigts sur le uke");
+				boutonAfficheChordFinder.setBounds(823, 114, 95, 36);
+				boutonAfficheChordFinder.addActionListener(this);
+				this.add(boutonAfficheChordFinder, "cell 2 3,alignx right,aligny center");
+				
+						// Affichage des boutons
+						boutonAfficheGrille = new JButton("Affiche grille");
+						boutonAfficheGrille.setBounds(723, 114, 95, 36);
+						boutonAfficheGrille.addActionListener(this);
+						this.add(boutonAfficheGrille, "cell 6 3,alignx right,aligny center");
+						
+								btnTransposeMoins = new JButton("-");
+								btnTransposeMoins.setBounds(119, 47, 42, 29);
+								btnTransposeMoins.addActionListener(this);
+								this.add(btnTransposeMoins, "cell 2 1,alignx right,aligny top");
+		
 	}
 
 	public String lireFichierTexte(File fichier) {
@@ -172,25 +173,17 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 
 			output.close();
 			// et on le ferme
-			JOptionPane jop3;
-			jop3 = new JOptionPane();
-			jop3.showMessageDialog(null, "Fichier \n" + fichier + "\n créé.", "Fichier créé",
-					JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("fichier créé");
 		} catch (IOException ioe) {
 			System.out.print("Erreur : impossible d'écrire sur le support !");
 			ioe.printStackTrace();
 			retour = 0;
-			// Boîte du message d'erreur
-			JOptionPane jop3;
-			jop3 = new JOptionPane();
-			jop3.showMessageDialog(null, "Erreur d'écriture sur le fichier ! \n" + fichier, "Erreur",
-					JOptionPane.ERROR_MESSAGE);
 		}
 
 		return retour;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getSource() == boutonAfficheGrille) {
 			// on enlève les fioritures de la zone de texte avant de traiter
@@ -203,8 +196,16 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			panneauMorceau.setTexteAtraiter(texteGrille.getText());
 			panneauMorceau.repaint();
 		}
+		if (evt.getSource() == boutonAfficheChordFinder)
+		{
+			FenetreAccordPositions fen;
+			fen = new FenetreAccordPositions();
+			fen.init();
+		}
+		
 		if (evt.getSource() == btnTransposePlus)
 			transposition++;
+		
 		if (evt.getSource() == btnTransposeMoins)
 			transposition--;
 
@@ -226,7 +227,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			
 			int returnVal = choix.showOpenDialog(this);
 
-			if (returnVal == choix.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = choix.getSelectedFile();
 				// This is where a real application would open the file.
 				texteGrille.setText(lireFichierTexte(file));
@@ -245,7 +246,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 			choix.setApproveButtonText("Enregistrer");
 			int returnVal = choix.showOpenDialog(this);
 
-			if (returnVal == choix.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = choix.getSelectedFile();
 				// This is where a real application would open the file.
 				sauveFichierTexte(file);
@@ -268,6 +269,7 @@ public class PanneauInterface extends JPanel implements KeyListener, ActionListe
 		this.panneauMorceau = panneauMorceau;
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_F1) {
 		}
